@@ -1,11 +1,19 @@
 import React from "react"
-import { HeaderWrapper, Nav, CartBtn, Menage } from "./header.styled"
+import {
+  HeaderWrapper,
+  Nav,
+  CartBtn,
+  Menage,
+  ProductAmount,
+  Value,
+} from "./header.styled"
 import { Link } from "gatsby"
 import { useSelector, useDispatch } from "react-redux"
 import { toggleCart } from "../../actions"
 
 const Header = () => {
   const logged = useSelector(state => state.isLogged)
+  const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
   return (
     <HeaderWrapper>
@@ -15,6 +23,9 @@ const Header = () => {
       </Nav>
       <Menage>
         <CartBtn onClick={() => dispatch(toggleCart())}>
+          <ProductAmount>
+            <Value>{cart.length}</Value>
+          </ProductAmount>
           <svg
             height={40}
             viewBox="0 0 24 24"

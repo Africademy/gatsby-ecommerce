@@ -7,16 +7,16 @@ import {
   Price,
   Name,
   AddToCart,
-  OnHover,
 } from "./product.styled"
 import { loadStripe } from "@stripe/stripe-js"
+import { addToCart } from "../../actions"
+import { useDispatch, useSelector } from "react-redux"
 
 const Product = ({ product }) => {
   const formatPrice = price => {
     return `$${price * 0.01}`
   }
-
-  const addToCart = async (e, sku) => {
+  const addToCartFunc = async (e, sku) => {
     e.preventDefault()
 
     const stripe = await loadStripe(
@@ -37,9 +37,17 @@ const Product = ({ product }) => {
         }
       })
   }
+  const dispatch = useDispatch()
+  const cart = useSelector(state => state.cart)
+
+  const handleCart = (e, product) => {
+    e.preventDefault()
+    dispatch(addToCart(product))
+  }
+
   return product.nodes.map(product => {
     return (
-      <ProductWrapper onSubmit={e => addToCart(e, product.id)} key={product.id}>
+      <ProductWrapper onSubmit={e => handleCart(e, product)} key={product.id}>
         <ProductImageWrapper>
           <Img src={product.image} alt="" />
         </ProductImageWrapper>

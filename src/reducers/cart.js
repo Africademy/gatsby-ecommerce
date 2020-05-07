@@ -1,7 +1,7 @@
 export const cart = (state = [], action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
-      return [...state, { key: 1, title: "Hoodie" }]
+      return [...state, action.payload]
     }
     default: {
       return state

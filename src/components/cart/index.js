@@ -1,10 +1,12 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { toggleCart } from "../../actions"
-import { CartWrapper, CloseCartBtn, Header } from "./cart.styled"
+import { CartWrapper, CloseCartBtn, Header, CartContent } from "./cart.styled"
+import CartProduct from "../cartProduct"
 
 const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
+  const cart = useSelector(state => state.cart)
   return (
     <CartWrapper toggleCart={toggleCartProp}>
       <Header>
@@ -25,6 +27,11 @@ const Cart = ({ toggleCartProp }) => {
           </svg>
         </CloseCartBtn>
       </Header>
+      <CartContent>
+        {cart.map(product => {
+          return <CartProduct product={product} />
+        })}
+      </CartContent>
     </CartWrapper>
   )
 }

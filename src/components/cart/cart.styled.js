@@ -35,3 +35,12 @@ export const CloseCartBtn = styled.button`
     outline: none;
   }
 `
+export const CartContent = styled.section`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  align-items: center;
+  -webkit-align-items: center;
+`

@@ -42,9 +42,22 @@ export const CartBtn = styled.button`
   align-items: center;
   -webkit-align-items: center;
   cursor: pointer;
+  position: relative;
 
   :focus {
     outline: none;
   }
+`
+export const ProductAmount = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: max-content;
+  height: max-content;
+  background-color: #d7b30c;
+  padding: 10px;
+`
+export const Value = styled.p`
+  font-size: 1em;
 `
 export const Account = styled.div``
