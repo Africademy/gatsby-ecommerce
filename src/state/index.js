@@ -1,8 +1,9 @@
 import { combineReducers } from "redux"
 import { isLogged } from "../reducers/isLogged"
-import { cart } from "../reducers/cart"
+import { cart, isCart } from "../reducers/cart"
 
 export default combineReducers({
   isLogged,
   cart,
+  isCart,
 })

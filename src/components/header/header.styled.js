@@ -10,11 +10,6 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   -webkit-align-items: center;
 `
-export const Logo = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-`
 export const Nav = styled.nav`
   width: 50%;
 `
@@ -41,6 +36,7 @@ export const CartBtn = styled.button`
   -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
+  cursor: pointer;
 
   :focus {
     outline: none;

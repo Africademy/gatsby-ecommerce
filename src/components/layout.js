@@ -1,6 +1,9 @@
 import React from "react"
 import { createGlobalStyle } from "styled-components"
 import Header from "../components/header"
+import Cart from "../components/cart"
+import Fade from "./fade"
+import { useSelector } from "react-redux"
 
 //import "./layout.css"
 
@@ -18,10 +21,13 @@ const GlobalStyles = createGlobalStyle`
 `
 
 const Layout = ({ children }) => {
+  const toggleCart = useSelector(state => state.isCart)
   return (
     <>
       <GlobalStyles />
+      <Fade toggleCartProp={toggleCart} />
       <Header />
+      <Cart toggleCartProp={toggleCart} />
       {children}
     </>
   )

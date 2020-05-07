@@ -3,3 +3,9 @@ export const logIn = () => {
     type: "IS_LOGGED",
   }
 }
+
+export const toggleCart = () => {
+  return {
+    type: "TOGGLE_CART",
+  }
+}
