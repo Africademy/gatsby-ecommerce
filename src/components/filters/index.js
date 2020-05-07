@@ -7,6 +7,7 @@ const Filters = () => {
       <FilterItem>Hoodies</FilterItem>
       <FilterItem>T-shirts</FilterItem>
       <FilterItem>Shoulder Bags</FilterItem>
+      <FilterItem>Shoes</FilterItem>
     </FiltersWrapper>
   )
 }

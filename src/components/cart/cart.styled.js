@@ -8,7 +8,8 @@ export const CartWrapper = styled.main`
   top: 0;
   right: ${props => (props.toggleCart ? 0 : "-30vw")};
   transition: 0.3s ease-in-out;
-  z-index: 10;
+  z-index: 101;
+  display: ${props => (props.toggleCart ? "block" : "none")};
 `
 export const Header = styled.section`
   width: 100%;

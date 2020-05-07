@@ -9,6 +9,11 @@ export const HeaderWrapper = styled.header`
   -webkit-justify-content: space-between;
   align-items: center;
   -webkit-align-items: center;
+  background-color: #fff;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  overflow: hidden;
 `
 export const Nav = styled.nav`
   width: 50%;
