@@ -6,6 +6,10 @@ export const HeaderlessLayout = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
 `
 export const LoginWrapper = styled.main`
   width: 100vw;
@@ -113,8 +117,20 @@ export const TogglePassword = styled.div`
 export const ToggleVisibility = styled.input`
   margin: 0 10px 0 0;
 `
+export const Btns = styled.section`
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+
+  a {
+    display: ${props => (props.validate ? "none" : "block")};
+  }
+`
 export const SubmitBtn = styled.button`
-  width: ${props => (props.validate ? "50%" : "max-content")};
+  width: ${props => (props.validate ? "100%" : "50%")};
   padding: 20px 40px 20px;
   font-size: 1em;
   border: none;

@@ -16,9 +16,12 @@ import {
   ToggleVisibility,
   SubmitBtn,
   Error,
+  Btns,
 } from "../components/forms/login/login.styled"
 import image from "../static/shoulder.jpg"
-import DispatchLogin from "../components/dispatchLogin"
+import { Link } from "gatsby"
+import { navigate } from "gatsby"
+import { connect } from "react-redux"
 import { logIn } from "../actions"
 
 class Login extends Component {
@@ -51,6 +54,7 @@ class Login extends Component {
     e.preventDefault()
 
     const { firstName, surName, email, password } = this.state
+    const { dispatch } = this.props
     if (firstName === "" || surName === "" || email === "" || password === "") {
       this.setState({ error: "You must fill all fields" })
     } else if (
@@ -66,6 +70,7 @@ class Login extends Component {
         password: password,
       }
       console.log(userData)
+      dispatch(logIn())
       this.setState({
         error: "",
         firstName: "",
@@ -74,6 +79,9 @@ class Login extends Component {
         password: "",
         validate: true,
       })
+      setTimeout(() => {
+        navigate("/")
+      }, 500)
     }
   }
   render() {
@@ -151,9 +159,12 @@ class Login extends Component {
                 <Label>Show password</Label>
               </TogglePassword>
             </InputContainer>
-            <SubmitBtn validate={validate} role="submit">
-              {validate ? "Success" : "Login"}
-            </SubmitBtn>
+            <Btns validate={validate}>
+              <Link to="/">Return to home</Link>
+              <SubmitBtn validate={validate} role="submit">
+                {validate ? "Success" : "Login"}
+              </SubmitBtn>
+            </Btns>
           </Form>
         </RightSide>
       </LoginWrapper>
@@ -161,4 +172,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default connect()(Login)

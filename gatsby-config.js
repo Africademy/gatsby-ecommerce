@@ -40,6 +40,12 @@ module.exports = {
         downloadFiles: true,
       },
     },
+    {
+      resolve: "gatsby-plugin-apollo",
+      options: {
+        uri: "https://api.stripe.com/",
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

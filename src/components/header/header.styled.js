@@ -13,7 +13,6 @@ export const HeaderWrapper = styled.header`
   position: sticky;
   z-index: 100;
   top: 0;
-  overflow: hidden;
 `
 export const Nav = styled.nav`
   width: 50%;

@@ -10,6 +10,7 @@ import {
 import { Link } from "gatsby"
 import { useSelector, useDispatch } from "react-redux"
 import { toggleCart } from "../../actions"
+import Account from "../account"
 
 const Header = () => {
   const logged = useSelector(state => state.isLogged)
@@ -55,7 +56,7 @@ const Header = () => {
             </g>
           </svg>
         </CartBtn>
-        {logged ? <p>logged</p> : <Link to="/login">Log in</Link>}
+        {logged ? <Account /> : <Link to="/login">Log in</Link>}
       </Menage>
     </HeaderWrapper>
   )
