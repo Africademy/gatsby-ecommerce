@@ -23,7 +23,7 @@ const Header = () => {
       </Nav>
       <Menage>
         <CartBtn onClick={() => dispatch(toggleCart())}>
-          <ProductAmount>
+          <ProductAmount cartLength={cart.length}>
             <Value>{cart.length}</Value>
           </ProductAmount>
           <svg

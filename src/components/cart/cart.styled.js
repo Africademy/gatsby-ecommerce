@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const CartWrapper = styled.main`
+export const CartWrapper = styled.form`
   width: 30vw;
   height: 100%;
   background-color: #ffffff;
@@ -43,4 +43,7 @@ export const CartContent = styled.section`
   -webkit-flex-flow: column;
   align-items: center;
   -webkit-align-items: center;
+`
+export const CheckoutBtn = styled.button`
+  font-size: 1em;
 `

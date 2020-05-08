@@ -18,16 +18,18 @@ export const RemoveBtn = styled.button`
 export const CartProductWrapper = styled.div`
   width: 90%;
   height: 20vh;
-  background-color: #dfdfdf;
+  background-color: #eaeaea;
   display: flex;
   margin: 0 0 1vw;
+  border-radius: 15px;
+  overflow: hidden;
 
   :hover ${RemoveBtn} {
     visibility: visible;
   }
 `
 export const ProductImage = styled.div`
-  width: 30%;
+  width: 25%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -37,12 +39,12 @@ export const ProductImage = styled.div`
   overflow: hidden;
 `
 export const Img = styled.img`
-  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
 `
 export const ProductDetails = styled.div`
-  width: 70%;
+  width: 75%;
   height: 100%;
   padding: 1vw;
   display: flex;
@@ -55,5 +57,6 @@ export const Name = styled.h3`
   font-size: 1.2em;
 `
 export const Price = styled.p`
-  font-size: 1em;
+  font-size: 1.5em;
+  font-weight: 600;
 `

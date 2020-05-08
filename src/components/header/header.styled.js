@@ -50,12 +50,17 @@ export const CartBtn = styled.button`
 `
 export const ProductAmount = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  transform: scale(${props => (props.cartLength > 0 ? 1 : 0)});
+  transition: 0.3s ease-in-out;
+  top: -20%;
+  right: -20%;
   width: max-content;
+  border-radius: 50px;
   height: max-content;
-  background-color: #d7b30c;
-  padding: 10px;
+  background-color: #ffd410;
+  padding: 5px 10px 5px;
+  font-size: 1.1em;
+  font-weight: 600;
 `
 export const Value = styled.p`
   font-size: 1em;

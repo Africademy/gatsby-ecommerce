@@ -38,7 +38,6 @@ const Product = ({ product }) => {
       })
   }
   const dispatch = useDispatch()
-  const cart = useSelector(state => state.cart)
 
   const handleCart = (e, product) => {
     e.preventDefault()
