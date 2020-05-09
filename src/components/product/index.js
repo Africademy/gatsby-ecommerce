@@ -10,32 +10,12 @@ import {
 } from "./product.styled"
 import { loadStripe } from "@stripe/stripe-js"
 import { addToCart } from "../../actions"
+import { Link } from "gatsby"
 import { useDispatch, useSelector } from "react-redux"
 
 const Product = ({ product }) => {
   const formatPrice = price => {
     return `$${price * 0.01}`
-  }
-  const addToCartFunc = async (e, sku) => {
-    e.preventDefault()
-
-    const stripe = await loadStripe(
-      "pk_test_12OvtkoNyXZih5pqyn0EYvn100iLl3Oay0"
-    )
-    stripe
-      .redirectToCheckout({
-        items: [{ sku: sku, quantity: 1 }],
-
-        // https://stripe.com/docs/payments/checkout/fulfillment
-        successUrl: "http://localhost:8000/success",
-        cancelUrl: "http://localhost:8000/canceled",
-      })
-      .then(function (result) {
-        if (result.error) {
-          const displayError = document.getElementById("error-message")
-          displayError.textContent = result.error.message
-        }
-      })
   }
   const dispatch = useDispatch()
 
@@ -51,7 +31,9 @@ const Product = ({ product }) => {
           <Img src={product.image} alt="" />
         </ProductImageWrapper>
         <ProductDetails>
-          <Name>{product.attributes.name}</Name>
+          <Link to={`/products/${product.id}`} state={{ product }}>
+            <Name>{product.attributes.name}</Name>
+          </Link>
           <Price>{formatPrice(product.price)}</Price>
           <AddToCart role="submit">
             <svg

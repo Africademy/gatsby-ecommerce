@@ -3,6 +3,11 @@ export const cart = (state = [], action) => {
     case "ADD_TO_CART": {
       return [...state, action.payload]
     }
+    case "REMOVE_FROM_CART": {
+      return state.filter(product => {
+        return product.id !== action.payload.id
+      })
+    }
     default: {
       return state
     }

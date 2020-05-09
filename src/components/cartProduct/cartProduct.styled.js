@@ -60,3 +60,5 @@ export const Price = styled.p`
   font-size: 1.5em;
   font-weight: 600;
 `
+export const Quantity = styled.p``
+export const Value = styled.span``

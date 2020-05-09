@@ -64,9 +64,13 @@ const Cart = ({ toggleCartProp }) => {
         </CloseCartBtn>
       </Header>
       <CartContent>
-        {cart.map(product => {
-          return <CartProduct product={product} />
-        })}
+        {cart.length === 0 ? (
+          <p>no items in cart</p>
+        ) : (
+          cart.map(product => {
+            return <CartProduct product={product} />
+          })
+        )}
         <CheckoutBtn role="submit">Checkout</CheckoutBtn>
       </CartContent>
     </CartWrapper>

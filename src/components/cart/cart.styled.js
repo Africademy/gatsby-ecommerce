@@ -46,4 +46,9 @@ export const CartContent = styled.section`
 `
 export const CheckoutBtn = styled.button`
   font-size: 1em;
+  padding: 15px 30px 15px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
 `
