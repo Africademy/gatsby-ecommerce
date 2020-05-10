@@ -8,10 +8,9 @@ import {
   Name,
   AddToCart,
 } from "./product.styled"
-import { loadStripe } from "@stripe/stripe-js"
 import { addToCart } from "../../actions"
 import { Link } from "gatsby"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 const Product = ({ product }) => {
   const formatPrice = price => {
@@ -19,14 +18,14 @@ const Product = ({ product }) => {
   }
   const dispatch = useDispatch()
 
-  const handleCart = (e, product) => {
+  const handleAdd = (e, product) => {
     e.preventDefault()
     dispatch(addToCart(product))
   }
 
   return product.nodes.map(product => {
     return (
-      <ProductWrapper onSubmit={e => handleCart(e, product)} key={product.id}>
+      <ProductWrapper onSubmit={e => handleAdd(e, product)} key={product.id}>
         <ProductImageWrapper>
           <Img src={product.image} alt="" />
         </ProductImageWrapper>
@@ -35,7 +34,7 @@ const Product = ({ product }) => {
             <Name>{product.attributes.name}</Name>
           </Link>
           <Price>{formatPrice(product.price)}</Price>
-          <AddToCart role="submit">
+          <AddToCart>
             <svg
               height={35}
               viewBox="0 0 24 24"

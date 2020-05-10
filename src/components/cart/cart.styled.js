@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { colors } from "../../theme"
 
 export const CartWrapper = styled.form`
   width: 30vw;
@@ -43,6 +44,10 @@ export const CartContent = styled.section`
   -webkit-flex-flow: column;
   align-items: center;
   -webkit-align-items: center;
+  overflow: scroll;
+`
+export const Total = styled.h3`
+  font-size: 1.2em;
 `
 export const CheckoutBtn = styled.button`
   font-size: 1em;
@@ -51,4 +56,16 @@ export const CheckoutBtn = styled.button`
   background-color: #000;
   color: #fff;
   cursor: pointer;
+`
+export const FillCart = styled.button`
+  width: max-content;
+  padding: 20px 40px 20px;
+  border: none;
+  background-color: ${colors.cta};
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  :focus {
+    outline: none;
+  }
 `

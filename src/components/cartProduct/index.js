@@ -13,19 +13,15 @@ import {
 import { removeFromCart } from "../../actions"
 import { useDispatch } from "react-redux"
 
-const CartProduct = ({ product }) => {
+const CartProduct = ({ product, formatPrice, quantity }) => {
   const dispatch = useDispatch()
 
-  const formatPrice = price => {
-    return `$${(price * 0.01).toFixed(2)}`
-  }
   const handleRemove = (e, product) => {
     e.preventDefault()
-    console.log(product.id)
     dispatch(removeFromCart(product))
   }
   return (
-    <CartProductWrapper>
+    <CartProductWrapper key={product.id}>
       <ProductImage>
         <Img src={product.image} alt={product.image} />
       </ProductImage>
@@ -33,7 +29,7 @@ const CartProduct = ({ product }) => {
         <Name>{product.attributes.name}</Name>
         <Price>{formatPrice(product.price)}</Price>
         <Quantity>
-          Quantity: <Value>1</Value>
+          Quantity: <Value>{quantity}</Value>
         </Quantity>
         <RemoveBtn onClick={e => handleRemove(e, product)}>Remove</RemoveBtn>
       </ProductDetails>

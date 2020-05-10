@@ -6,21 +6,41 @@ import {
   CloseCartBtn,
   Header,
   CartContent,
+  Total,
   CheckoutBtn,
+  FillCart,
 } from "./cart.styled"
 import CartProduct from "../cartProduct"
+import EmptyCart from "../emptyCart"
+import { navigate } from "gatsby"
 import { loadStripe } from "@stripe/stripe-js"
 
 const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
 
+  const formatPrice = price => {
+    return `$${price * 0.01}`
+  }
+  const totalPrice = () => {
+    if (cart.length > 0) {
+      const reduce = cart.reduce((acc, product) => ({
+        price: acc.price + product.product.price * product.quantity,
+      }))
+      return reduce.price
+    }
+  }
+  const handleClose = e => {
+    e.preventDefault()
+    navigate("/products")
+    dispatch(toggleCart())
+  }
+
   const handleCheckout = async (e, cart) => {
     e.preventDefault()
     const sku = cart.map(product => {
       return { sku: product.id, quantity: 1 }
     })
-    console.log(sku)
     const stripe = await loadStripe(
       "pk_test_12OvtkoNyXZih5pqyn0EYvn100iLl3Oay0"
     )
@@ -39,14 +59,10 @@ const Cart = ({ toggleCartProp }) => {
         }
       })
   }
-
   return (
-    <CartWrapper
-      onSubmit={e => handleCheckout(e, cart)}
-      toggleCart={toggleCartProp}
-    >
+    <CartWrapper toggleCart={toggleCartProp}>
       <Header>
-        <CloseCartBtn onClick={() => dispatch(toggleCart())}>
+        <CloseCartBtn onClick={e => handleClose(e)}>
           <svg
             height={40}
             viewBox="0 0 24 24"
@@ -65,13 +81,31 @@ const Cart = ({ toggleCartProp }) => {
       </Header>
       <CartContent>
         {cart.length === 0 ? (
-          <p>no items in cart</p>
+          <EmptyCart />
         ) : (
           cart.map(product => {
-            return <CartProduct product={product} />
+            return (
+              <CartProduct
+                key={product.id}
+                product={product.product}
+                quantity={product.quantity}
+                formatPrice={formatPrice}
+              />
+            )
           })
         )}
-        <CheckoutBtn role="submit">Checkout</CheckoutBtn>
+        {cart.length > 0 ? (
+          <>
+            <Total>Total: {formatPrice(totalPrice())}</Total>
+            <CheckoutBtn role="submit" onClick={e => handleCheckout(e, cart)}>
+              Checkout
+            </CheckoutBtn>
+          </>
+        ) : (
+          <FillCart onClick={e => handleClose(e)}>
+            Find awesome clothes
+          </FillCart>
+        )}
       </CartContent>
     </CartWrapper>
   )
