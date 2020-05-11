@@ -5,6 +5,7 @@ import Product from "../components/product"
 import Filters from "../components/filters"
 import { StaticQuery, graphql } from "gatsby"
 import { loadStripe } from "@stripe/stripe-js"
+import Modal from "../components/modal"
 
 const PRODUCTS = graphql`
   query Products {
@@ -31,6 +32,7 @@ class Products extends Component {
     return (
       <Layout>
         <ProductsWrapper>
+          <Modal />
           <Filters />
           <List>
             <StaticQuery

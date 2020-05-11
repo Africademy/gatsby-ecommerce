@@ -23,23 +23,23 @@ const Cart = ({ toggleCartProp }) => {
     return `$${price * 0.01}`
   }
   const totalPrice = () => {
+    console.log(cart)
     if (cart.length > 0) {
-      const reduce = cart.reduce((acc, product) => ({
-        price: acc.price + product.product.price * product.quantity,
-      }))
-      return reduce.price
+      const res = cart.reduce((acc, product) => {
+        return product.product.price
+      })
+      console.log(res)
     }
   }
   const handleClose = e => {
     e.preventDefault()
-    navigate("/products")
     dispatch(toggleCart())
   }
 
   const handleCheckout = async (e, cart) => {
     e.preventDefault()
     const sku = cart.map(product => {
-      return { sku: product.id, quantity: 1 }
+      return { sku: product.product.id, quantity: product.quantity }
     })
     const stripe = await loadStripe(
       "pk_test_12OvtkoNyXZih5pqyn0EYvn100iLl3Oay0"
@@ -86,7 +86,7 @@ const Cart = ({ toggleCartProp }) => {
           cart.map(product => {
             return (
               <CartProduct
-                key={product.id}
+                key={product.product.id}
                 product={product.product}
                 quantity={product.quantity}
                 formatPrice={formatPrice}
@@ -96,7 +96,7 @@ const Cart = ({ toggleCartProp }) => {
         )}
         {cart.length > 0 ? (
           <>
-            <Total>Total: {formatPrice(totalPrice())}</Total>
+            <Total>Total: {totalPrice()}</Total>
             <CheckoutBtn role="submit" onClick={e => handleCheckout(e, cart)}>
               Checkout
             </CheckoutBtn>

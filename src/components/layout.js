@@ -4,6 +4,7 @@ import Header from "../components/header"
 import Cart from "../components/cart"
 import Fade from "./fade"
 import { useSelector } from "react-redux"
+import { ModalProvider } from "styled-react-modal"
 
 //import "./layout.css"
 

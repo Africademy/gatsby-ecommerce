@@ -20,20 +20,4 @@ export const FilterItem = styled.button`
   transition: 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
-
-  :before {
-    content: "";
-    display: block;
-    width: 50%;
-    height: 100%;
-    background-color: black;
-    position: absolute;
-    top: 0;
-    left: -50%;
-    transform: scale(1.2) rotate(5deg);
-    transition: 0.6s ease-in-out;
-  }
-  :hover:before {
-    left: 150%;
-  }
 `

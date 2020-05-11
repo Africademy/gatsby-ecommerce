@@ -73,7 +73,7 @@ export const AddToCart = styled.button`
   align-items: center;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-
+  /*
   :before {
     content: "Add to cart";
     font-size: 1.5em;
@@ -87,7 +87,7 @@ export const AddToCart = styled.button`
     left: -220%;
     opacity: 0;
     z-index: 1;
-    transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out; */
   }
   :focus {
     outline: none;

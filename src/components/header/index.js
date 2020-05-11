@@ -16,6 +16,7 @@ const Header = () => {
   const logged = useSelector(state => state.isLogged)
   const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
+
   return (
     <HeaderWrapper>
       <Link to="/">logo</Link>

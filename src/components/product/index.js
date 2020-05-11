@@ -9,6 +9,7 @@ import {
   AddToCart,
 } from "./product.styled"
 import { addToCart } from "../../actions"
+import { handleModal } from "../../actions"
 import { Link } from "gatsby"
 import { useDispatch } from "react-redux"
 
@@ -20,6 +21,7 @@ const Product = ({ product }) => {
 
   const handleAdd = (e, product) => {
     e.preventDefault()
+    dispatch(handleModal())
     dispatch(addToCart(product))
   }
 
