@@ -24,8 +24,9 @@ export const removeFromCart = product => {
   }
 }
 
-export const handleModal = () => {
+export const handleModal = product => {
   return {
     type: "HANDLE_MODAL",
+    payload: product,
   }
 }

@@ -16,10 +16,12 @@ import {
   Size,
   AddToCartBtn,
 } from "./productTemplate.styled"
+import Modal from "../modal"
 import { colors } from "../../theme"
 import { Link } from "gatsby"
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../actions"
+import { handleModal } from "../../actions"
 
 const Template = ({
   location: {
@@ -27,6 +29,7 @@ const Template = ({
   },
 }) => {
   const dispatch = useDispatch()
+  const [valid, setValid] = useState("")
   const formatPrice = price => {
     return `$${price * 0.01}`
   }
@@ -38,9 +41,24 @@ const Template = ({
     })
     e.target.style.backgroundColor = colors.cta
   }
+  const handleAddItem = product => {
+    const sizes = document.querySelector("#sizes")
+    const sizesList = [...sizes.children]
+    const found = sizesList.find(size => {
+      return size.style.backgroundColor === "#ffc105"
+    })
+    if (found) {
+      setValid("")
+      dispatch(handleModal())
+      dispatch(addToCart(product))
+    } else {
+      setValid("choose size")
+    }
+  }
   return (
     <Layout>
       <TemplateWrapper>
+        <Modal />
         <TemplateContainer>
           <ImageContainer>
             <Img src={product.image} alt={product.attributes.name} />
@@ -65,6 +83,7 @@ const Template = ({
             </Link>
             <Name>{product.attributes.name}</Name>
             <Price>{formatPrice(product.price)}</Price>
+            <p>{valid}</p>
             <Sizes id="sizes">
               <Size onClick={e => sizeSelect(e)}>XS</Size>
               <Size onClick={e => sizeSelect(e)}>S</Size>
@@ -78,7 +97,7 @@ const Template = ({
               </Header>
               <Content>Lorem ipsum dolor et. Cotton 100%</Content>
             </Description>
-            <AddToCartBtn onClick={() => dispatch(addToCart(product))}>
+            <AddToCartBtn onClick={() => handleAddItem(product)}>
               Add to cart
             </AddToCartBtn>
           </DetailsContainer>

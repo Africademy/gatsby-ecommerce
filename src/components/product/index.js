@@ -21,8 +21,9 @@ const Product = ({ product }) => {
 
   const handleAdd = (e, product) => {
     e.preventDefault()
-    dispatch(handleModal())
+    dispatch(handleModal(product))
     dispatch(addToCart(product))
+    // TODO finish handling modal (redirecting btns etc)
   }
 
   return product.nodes.map(product => {

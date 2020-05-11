@@ -32,21 +32,6 @@ export const Menage = styled.section`
     border-radius: 25px;
   }
 `
-export const CartBtn = styled.button`
-  border: none;
-  background: none;
-  display: flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
-  cursor: pointer;
-  position: relative;
-
-  :focus {
-    outline: none;
-  }
-`
 export const ProductAmount = styled.div`
   position: absolute;
   transform: scale(${props => (props.cartLength > 0 ? 1 : 0)});
@@ -61,7 +46,30 @@ export const ProductAmount = styled.div`
   font-size: 1.1em;
   font-weight: 600;
 `
+export const CartBtn = styled.button`
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  cursor: pointer;
+  position: relative;
+  transform-origin: 0 100%;
+  transition: 0.3s ease-in-out;
+
+  :focus {
+    outline: none;
+  }
+  :hover {
+    transform: rotate(-10deg);
+    transition: 0.3s ease-in-out;
+  }
+  :hover ${ProductAmount} {
+    transform: rotate(10deg);
+  }
+`
 export const Value = styled.p`
   font-size: 1em;
 `
-export const Account = styled.div``

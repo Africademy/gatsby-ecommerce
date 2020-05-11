@@ -17,20 +17,19 @@ export const cart = (state = [], action) => {
       const filtered = state.filter(product => {
         return product.product.id !== action.payload.id
       })
+      // TODO => handle updating quantity when removing
       if (found) {
-        console.log(found)
-        found.quantity = found.quantity - 1
+        found.quantity -= 1
         if (found.quantity < 1) {
-          found.quantity = 1
+          return state.filter(product => {
+            return product.product.id !== action.payload.id
+          })
         }
         return state
       }
       if (found.quantity === 1) {
         return filtered
       }
-      return state.filter(product => {
-        return product.product.id !== action.payload.id
-      })
     }
     default: {
       return state

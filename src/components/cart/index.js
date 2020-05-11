@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleCart } from "../../actions"
 import {
@@ -9,26 +9,26 @@ import {
   Total,
   CheckoutBtn,
   FillCart,
+  Summary,
 } from "./cart.styled"
 import CartProduct from "../cartProduct"
 import EmptyCart from "../emptyCart"
-import { navigate } from "gatsby"
 import { loadStripe } from "@stripe/stripe-js"
 
 const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
+  useEffect(() => {}, [cart])
 
   const formatPrice = price => {
     return `$${price * 0.01}`
   }
   const totalPrice = () => {
-    console.log(cart)
     if (cart.length > 0) {
-      const res = cart.reduce((acc, product) => {
-        return product.product.price
-      })
-      console.log(res)
+      const total = cart.reduce((acc, product) => {
+        return (acc += product.product.price * product.quantity)
+      }, 0)
+      return total
     }
   }
   const handleClose = e => {
@@ -95,12 +95,12 @@ const Cart = ({ toggleCartProp }) => {
           })
         )}
         {cart.length > 0 ? (
-          <>
-            <Total>Total: {totalPrice()}</Total>
+          <Summary>
+            <Total>Total: {formatPrice(totalPrice())}</Total>
             <CheckoutBtn role="submit" onClick={e => handleCheckout(e, cart)}>
               Checkout
             </CheckoutBtn>
-          </>
+          </Summary>
         ) : (
           <FillCart onClick={e => handleClose(e)}>
             Find awesome clothes

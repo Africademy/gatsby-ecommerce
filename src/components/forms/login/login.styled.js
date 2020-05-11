@@ -158,3 +158,13 @@ export const Error = styled.p`
   opacity: ${props => (props.error === "" ? 0 : 1)};
   transition: 0.3s ease-in-out;
 `
+export const ReturnBtn = styled.button`
+  border: none;
+  background: none;
+  font-size: 1em;
+  cursor: pointer;
+
+  :focus {
+    outline: none;
+  }
+`

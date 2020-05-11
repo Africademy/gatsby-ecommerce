@@ -17,6 +17,13 @@ const Header = () => {
   const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
 
+  const calculateCart = () => {
+    const totalQuantity = cart.reduce((acc, product) => {
+      return (acc += product.quantity)
+    }, 0)
+    return totalQuantity
+  }
+
   return (
     <HeaderWrapper>
       <Link to="/">logo</Link>
@@ -26,7 +33,7 @@ const Header = () => {
       <Menage>
         <CartBtn onClick={() => dispatch(toggleCart())}>
           <ProductAmount cartLength={cart.length}>
-            <Value>{cart.length}</Value>
+            <Value>{calculateCart()}</Value>
           </ProductAmount>
           <svg
             height={40}

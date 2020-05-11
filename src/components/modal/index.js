@@ -1,15 +1,34 @@
 import React from "react"
-import { ModalWrapper, ModalContent, Title, CTAButton } from "./modal.styled"
-import { useSelector } from "react-redux"
+import {
+  ModalWrapper,
+  ModalContent,
+  Title,
+  UXText,
+  CTAButton,
+  Btns,
+} from "./modal.styled"
+import { useSelector, useDispatch } from "react-redux"
+import { handleModal, toggleCart } from "../../actions"
 
 const Modal = () => {
+  const dispatch = useDispatch()
+  const handleCart = () => {
+    handleShopping()
+    dispatch(toggleCart())
+  }
+  const handleShopping = () => {
+    dispatch(handleModal())
+  }
   const modal = useSelector(state => state.modal)
   return (
     <ModalWrapper isOpen={modal}>
-      <ModalContent>
-        <Title>has been added to cart</Title>
-        <CTAButton>Order & Pay</CTAButton>
-        <CTAButton>Buy more</CTAButton>
+      <ModalContent isOpen={modal}>
+        <Title>Item added to cart</Title>
+        <UXText>What do you want to do now?</UXText>
+        <Btns>
+          <CTAButton onClick={() => handleCart()}>Order & Pay</CTAButton>
+          <CTAButton onClick={() => handleShopping()}>Buy more</CTAButton>
+        </Btns>
       </ModalContent>
     </ModalWrapper>
   )

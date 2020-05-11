@@ -17,9 +17,9 @@ import {
   SubmitBtn,
   Error,
   Btns,
+  ReturnBtn,
 } from "../components/forms/login/login.styled"
 import image from "../static/shoulder.jpg"
-import { Link } from "gatsby"
 import { navigate } from "gatsby"
 import { connect } from "react-redux"
 import { logIn } from "../actions"
@@ -49,6 +49,11 @@ class Login extends Component {
           passwordType: "text",
           togglePass: !this.state.togglePass,
         })
+  }
+  handleGoBack = () => {
+    if (window) {
+      window.history.back()
+    }
   }
   handleSubmit = e => {
     e.preventDefault()
@@ -160,7 +165,9 @@ class Login extends Component {
               </TogglePassword>
             </InputContainer>
             <Btns validate={validate}>
-              <Link to="/">Return to home</Link>
+              <ReturnBtn onClick={() => this.handleGoBack()}>
+                Return to home
+              </ReturnBtn>
               <SubmitBtn validate={validate} role="submit">
                 {validate ? "Success" : "Login"}
               </SubmitBtn>

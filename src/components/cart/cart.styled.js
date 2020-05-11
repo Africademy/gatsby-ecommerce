@@ -47,14 +47,16 @@ export const CartContent = styled.section`
   overflow: scroll;
 `
 export const Total = styled.h3`
-  font-size: 1.2em;
+  font-size: 1.4em;
 `
 export const CheckoutBtn = styled.button`
   font-size: 1em;
-  padding: 15px 30px 15px;
+  padding: 20px 40px 20px;
   border: none;
-  background-color: #000;
-  color: #fff;
+  border-radius: 50px;
+  background-color: ${colors.cta};
+  color: #000;
+  font-weight: 600;
   cursor: pointer;
 `
 export const FillCart = styled.button`
@@ -68,4 +70,15 @@ export const FillCart = styled.button`
   :focus {
     outline: none;
   }
+`
+export const Summary = styled.section`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  padding: 0 2vw 0;
+  margin: 2vw 0 0;
+  align-items: center;
+  -webkit-align-items: center;
 `
