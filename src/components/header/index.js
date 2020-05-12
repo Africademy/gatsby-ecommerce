@@ -6,6 +6,7 @@ import {
   Menage,
   ProductAmount,
   Value,
+  BurgerMenuBtn,
 } from "./header.styled"
 import { Link } from "gatsby"
 import { useSelector, useDispatch } from "react-redux"
@@ -65,6 +66,7 @@ const Header = () => {
           </svg>
         </CartBtn>
         {logged ? <Account /> : <Link to="/login">Log in</Link>}
+        <BurgerMenuBtn></BurgerMenuBtn>
       </Menage>
     </HeaderWrapper>
   )

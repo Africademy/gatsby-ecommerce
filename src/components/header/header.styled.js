@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { small, medium, large, xlarge } from "../../breakpoints"
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
@@ -16,6 +17,12 @@ export const HeaderWrapper = styled.header`
 `
 export const Nav = styled.nav`
   width: 50%;
+  @media all and (max-width: ${small}) {
+    display: none;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 40%;
+  }
 `
 export const Menage = styled.section`
   width: 20%;
@@ -30,6 +37,20 @@ export const Menage = styled.section`
     background-color: #1b1b28;
     color: #fff;
     border-radius: 25px;
+
+    @media all and (max-width: ${small}) {
+      display: none;
+    }
+  }
+  @media all and (max-width: ${small}) {
+    width: 30%;
+  }
+
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 35%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 25%;
   }
 `
 export const ProductAmount = styled.div`
@@ -72,4 +93,13 @@ export const CartBtn = styled.button`
 `
 export const Value = styled.p`
   font-size: 1em;
+`
+
+export const BurgerMenuBtn = styled.button`
+  display: none;
+  @media all and (max-width: ${small}) {
+    display: block;
+    height: 6vh;
+    width: 6vh;
+  }
 `

@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
+import { small, medium, large } from "../../breakpoints"
 
 export const HeroWrapper = styled.main`
   width: 100vw;
@@ -19,10 +20,30 @@ export const HeroContent = styled.section`
   justify-content: space-between;
   -webkit-justify-content: space-between;
   height: 90%;
+  width: 50%;
   padding: 10vw 0 10vw;
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    height: 70%;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 80%;
+    height: 80%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 60%;
+    height: 70%;
+  }
 `
 export const Title = styled.h1`
   font-size: 4em;
+  @media all and (max-width: ${small}) {
+    font-size: 3.5em;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    font-size: 3.5em;
+  }
 `
 export const CTABtn = styled.button`
   width: max-content;
@@ -72,6 +93,22 @@ export const HeroImages = styled.section`
     :hover {
       transform: scale(1.1);
       transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  }
+
+  @media all and (max-width: ${medium}) {
+    display: none;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 40%;
+    div:nth-child(1) {
+      display: none;
+    }
+    div:nth-child(2) {
+      width: 45%;
+    }
+    div:nth-child(3) {
+      width: 45%;
     }
   }
 `

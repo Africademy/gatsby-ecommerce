@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import {
-  LoginWrapper,
+  FormWrapper,
   LeftSide,
   RightSide,
   ImageContainer,
@@ -18,11 +18,13 @@ import {
   Error,
   Btns,
   ReturnBtn,
+  CustomCheckbox,
 } from "../components/forms/login/login.styled"
 import image from "../static/shoulder.jpg"
 import { navigate } from "gatsby"
 import { connect } from "react-redux"
-import { logIn } from "../actions"
+import { logIn, getUserData } from "../actions"
+import SwitchForm from "../components/forms/switchForm"
 
 class Login extends Component {
   state = {
@@ -50,7 +52,8 @@ class Login extends Component {
           togglePass: !this.state.togglePass,
         })
   }
-  handleGoBack = () => {
+  handleGoBack = e => {
+    e.preventDefault()
     if (window) {
       window.history.back()
     }
@@ -74,8 +77,8 @@ class Login extends Component {
         email: email,
         password: password,
       }
-      console.log(userData)
       dispatch(logIn())
+      dispatch(getUserData(userData))
       this.setState({
         error: "",
         firstName: "",
@@ -101,7 +104,7 @@ class Login extends Component {
       togglePass,
     } = this.state
     return (
-      <LoginWrapper>
+      <FormWrapper>
         <HeaderlessLayout />
         <LeftSide>
           <ImageContainer>
@@ -161,20 +164,25 @@ class Login extends Component {
                   type="checkbox"
                   checked={togglePass}
                 />
+                <CustomCheckbox />
                 <Label>Show password</Label>
               </TogglePassword>
             </InputContainer>
             <Btns validate={validate}>
-              <ReturnBtn onClick={() => this.handleGoBack()}>
+              <ReturnBtn
+                validate={validate}
+                onClick={e => this.handleGoBack(e)}
+              >
                 Return to home
               </ReturnBtn>
               <SubmitBtn validate={validate} role="submit">
                 {validate ? "Success" : "Login"}
               </SubmitBtn>
             </Btns>
+            <SwitchForm title={"Don't have account?"} link={"/register"} />
           </Form>
         </RightSide>
-      </LoginWrapper>
+      </FormWrapper>
     )
   }
 }

@@ -1,10 +1,12 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { toggleCart } from "../../actions"
+import { toggleCart, resetCart } from "../../actions"
 import {
   CartWrapper,
+  CartContainer,
   CloseCartBtn,
   Header,
+  RemoveAllBtn,
   CartContent,
   Total,
   CheckoutBtn,
@@ -13,12 +15,15 @@ import {
 } from "./cart.styled"
 import CartProduct from "../cartProduct"
 import EmptyCart from "../emptyCart"
+import Trash from "../trashIcon"
 import { loadStripe } from "@stripe/stripe-js"
 
 const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
   useEffect(() => {}, [cart])
+  // TODO update component every time when quantity changes
+  // TODO add btn for removing all items in cart
 
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -34,6 +39,10 @@ const Cart = ({ toggleCartProp }) => {
   const handleClose = e => {
     e.preventDefault()
     dispatch(toggleCart())
+  }
+  const handleCartReset = e => {
+    e.preventDefault()
+    dispatch(resetCart())
   }
 
   const handleCheckout = async (e, cart) => {
@@ -61,52 +70,57 @@ const Cart = ({ toggleCartProp }) => {
   }
   return (
     <CartWrapper toggleCart={toggleCartProp}>
-      <Header>
-        <CloseCartBtn onClick={e => handleClose(e)}>
-          <svg
-            height={40}
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g fill="none">
-              <path
-                d="M6.757 17.243L12 12m5.243-5.243L12 12m0 0L6.757 6.757M12 12l5.243 5.243"
-                stroke="#000000"
-                strokeLinecap="round"
-                strokeWidth="2"
-              />
-            </g>
-          </svg>
-        </CloseCartBtn>
-      </Header>
-      <CartContent>
-        {cart.length === 0 ? (
-          <EmptyCart />
-        ) : (
-          cart.map(product => {
-            return (
-              <CartProduct
-                key={product.product.id}
-                product={product.product}
-                quantity={product.quantity}
-                formatPrice={formatPrice}
-              />
-            )
-          })
-        )}
-        {cart.length > 0 ? (
-          <Summary>
-            <Total>Total: {formatPrice(totalPrice())}</Total>
-            <CheckoutBtn role="submit" onClick={e => handleCheckout(e, cart)}>
-              Checkout
-            </CheckoutBtn>
-          </Summary>
-        ) : (
-          <FillCart onClick={e => handleClose(e)}>
-            Find awesome clothes
-          </FillCart>
-        )}
-      </CartContent>
+      <CartContainer>
+        <Header>
+          <CloseCartBtn onClick={e => handleClose(e)}>
+            <svg
+              height={40}
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g fill="none">
+                <path
+                  d="M6.757 17.243L12 12m5.243-5.243L12 12m0 0L6.757 6.757M12 12l5.243 5.243"
+                  stroke="#000000"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+              </g>
+            </svg>
+          </CloseCartBtn>
+          <RemoveAllBtn onClick={e => handleCartReset(e)}>
+            <Trash width={80} />
+          </RemoveAllBtn>
+        </Header>
+        <CartContent cartLength={cart.length}>
+          {cart.length === 0 ? (
+            <EmptyCart />
+          ) : (
+            cart.map(product => {
+              return (
+                <CartProduct
+                  key={product.product.id}
+                  product={product.product}
+                  quantity={product.quantity}
+                  formatPrice={formatPrice}
+                />
+              )
+            })
+          )}
+          {cart.length > 0 ? (
+            <Summary>
+              <Total>Total: {formatPrice(totalPrice())}</Total>
+              <CheckoutBtn role="submit" onClick={e => handleCheckout(e, cart)}>
+                Checkout
+              </CheckoutBtn>
+            </Summary>
+          ) : (
+            <FillCart onClick={e => handleClose(e)}>
+              Find awesome clothes
+            </FillCart>
+          )}
+        </CartContent>
+      </CartContainer>
     </CartWrapper>
   )
 }

@@ -7,12 +7,13 @@ import {
   DropdownItem,
   Name,
 } from "./account.styled"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { logIn } from "../../actions"
 
 const Account = () => {
   const [dropdown, setDropdown] = useState(false)
   const dispatch = useDispatch()
+  const logged = useSelector(state => state.isLogged)
   return (
     <AccountWrapper onClick={() => setDropdown(!dropdown)}>
       <ImageContainer>
@@ -34,7 +35,7 @@ const Account = () => {
         </svg>
       </ImageContainer>
       <MyAccount dropdown={dropdown}>
-        My account
+        {logged.userData.firstName} {logged.userData.surName}
         <svg height={25} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <g fill="none">
             <path

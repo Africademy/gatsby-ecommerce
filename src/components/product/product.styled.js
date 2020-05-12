@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components"
+import { small, medium, large, xlarge } from "../../breakpoints"
 
 const addToAnimation = keyframes`
   0% {
@@ -14,6 +15,11 @@ export const Img = styled.img`
   object-fit: cover;
   object-position: center center;
   transition: 0.3s ease-in-out;
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    object-position: 0 center;
+  }
 `
 export const ProductWrapper = styled.form`
   width: 100%;
@@ -33,6 +39,17 @@ export const ProductWrapper = styled.form`
     height: 110%;
     transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  @media all and (max-width: ${small}) {
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    height: 50vh;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    height: 45vh;
+  }
 `
 export const ProductImageWrapper = styled.div`
   width: 50%;
@@ -44,19 +61,42 @@ export const ProductImageWrapper = styled.div`
   -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    height: 60%;
+  }
 `
 export const ProductDetails = styled.div`
   width: 50%;
   height: 100%;
   padding: 1vw;
   position: relative;
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+  }
 `
 export const Name = styled.h3`
   height: 20%;
   font-size: 1.3em;
+
+  @media all and (max-width: ${small}) {
+    font-size: 1.5em;
+  }
 `
 export const Price = styled.p`
   font-size: 1.2em;
+
+  @media all and (max-width: ${small}) {
+    font-size: 1.3em;
+  }
 `
 export const AddToCart = styled.button`
   height: 3.5vw;
@@ -73,22 +113,6 @@ export const AddToCart = styled.button`
   align-items: center;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-  /*
-  :before {
-    content: "Add to cart";
-    font-size: 1.5em;
-    display: block;
-    background-color: #e5e5e5;
-    border-radius: 10px;
-    padding: 10px 20px 10px;
-    width: max-content;
-    height: max-content;
-    position: absolute;
-    left: -220%;
-    opacity: 0;
-    z-index: 1;
-    transition: 0.2s ease-in-out; */
-  }
   :focus {
     outline: none;
   }
@@ -104,5 +128,21 @@ export const AddToCart = styled.button`
   }
   :hover svg {
     animation: 0.2s ${addToAnimation} linear;
+  }
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    right: 0;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 90%;
+    position: absolute;
+
+    left: 50%;
+    margin-left: -45%;
+    height: 60px;
+    bottom: 2vw;
   }
 `

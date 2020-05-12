@@ -30,3 +30,16 @@ export const handleModal = product => {
     payload: product,
   }
 }
+
+export const getUserData = userData => {
+  return {
+    type: "GET_USER_DATA",
+    payload: userData,
+  }
+}
+
+export const resetCart = () => {
+  return {
+    type: "RESET_CART",
+  }
+}

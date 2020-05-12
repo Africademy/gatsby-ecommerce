@@ -3,6 +3,9 @@ export const isLogged = (state = false, action) => {
     case "IS_LOGGED": {
       return !state
     }
+    case "GET_USER_DATA": {
+      return { userData: action.payload }
+    }
     default: {
       return state
     }

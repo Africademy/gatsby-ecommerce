@@ -1,23 +1,31 @@
 import styled, { createGlobalStyle } from "styled-components"
+import { small, medium } from "../../../breakpoints"
+import { colors } from "../../../theme"
 
 export const HeaderlessLayout = createGlobalStyle`
   *, :before, :after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
   }
   a {
     color: #000;
     text-decoration: none;
   }
 `
-export const LoginWrapper = styled.main`
+export const FormWrapper = styled.main`
   width: 100vw;
   height: 100vh;
   display: flex;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  @media all and (max-width: ${medium}) {
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    overflow: hidden;
+  }
 `
 export const LeftSide = styled.section`
   width: 50%;
@@ -36,6 +44,41 @@ export const LeftSide = styled.section`
     height: 50%;
     align-self: flex-end;
   }
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    height: 30%;
+    overflow: hidden;
+
+    div:nth-child(1) {
+      top: -20%;
+      left: 0;
+    }
+    div:nth-child(2) {
+      left: 35%;
+      top: -30%;
+    }
+    div:nth-child(3) {
+      right: 0;
+      top: -35%;
+    }
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    height: 15%;
+    width: 100%;
+
+    div:nth-child(1) {
+      top: -30%;
+      left: 0;
+    }
+    div:nth-child(2) {
+      left: 35%;
+      top: -35%;
+    }
+    div:nth-child(3) {
+      right: 0;
+      top: -40%;
+    }
+  }
 `
 export const ImageContainer = styled.div`
   width: 30%;
@@ -46,13 +89,24 @@ export const ImageContainer = styled.div`
   align-items: center;
   -webkit-align-items: center;
   overflow: hidden;
+  transition: 0.3s ease-in-out;
   :hover {
     height: 80%;
+    transition: 0.3s ease-in-out;
+  }
+  @media all and (max-width: ${small}) {
+    position: absolute;
+    height: 50%;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    position: absolute;
+    height: 50%;
   }
 `
 export const Img = styled.img`
   height: 100%;
   object-fit: cover;
+  transition: 0.3s ease-in-out;
 `
 
 export const RightSide = styled.section`
@@ -63,10 +117,28 @@ export const RightSide = styled.section`
   -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    height: 70%;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 100%;
+    height: 80%;
+  }
 `
 export const Form = styled.form`
   width: 70%;
   height: 70%;
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    padding: 5vw;
+    height: 100%;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 80%;
+  }
 `
 export const Title = styled.h3`
   font-size: 2.5em;
@@ -84,6 +156,9 @@ export const Name = styled.section`
   div:nth-child(2) {
     width: 45%;
   }
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+  }
 `
 export const InputContainer = styled.div`
   width: 70%;
@@ -91,9 +166,17 @@ export const InputContainer = styled.div`
   flex-flow: column;
   -webkit-flex-flow: column;
   margin: 0 0 2vw;
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    margin: 0 0 5vw;
+  }
 `
 export const Label = styled.label`
   margin: 0 0 0.5vw;
+  @media all and (max-width: ${medium}) {
+    font-size: 1.1em;
+  }
 `
 export const Input = styled.input`
   height: 50px;
@@ -105,17 +188,59 @@ export const Input = styled.input`
   :focus {
     outline: none;
   }
+
+  @media all and (max-width: ${medium}) {
+    height: 60px;
+    font-size: 1.2em;
+  }
 `
 export const TogglePassword = styled.div`
   display: flex;
   align-items: center;
-  height: 30px;
+  height: 40px;
+  position: relative;
   label {
     margin: 0;
   }
 `
+export const CustomCheckbox = styled.span`
+  height: 25px;
+  width: 25px;
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  margin: -12.5px 0 0 0;
+  left: 5px;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
+
+  :before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: ${colors.cta};
+  }
+`
 export const ToggleVisibility = styled.input`
-  margin: 0 10px 0 0;
+  margin: 0 30px 0 0;
+  opacity: 0;
+  position: relative;
+  cursor: pointer;
+
+  :checked ~ span {
+    background-color: ${colors.cta};
+    border: 1px solid ${colors.cta};
+  }
+
+  @media all and (max-width: ${medium}) {
+    height: 30px;
+    width: 30px;
+    margin: 0 10px 0 0;
+  }
 `
 export const Btns = styled.section`
   width: 70%;
@@ -127,6 +252,13 @@ export const Btns = styled.section`
 
   a {
     display: ${props => (props.validate ? "none" : "block")};
+  }
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    flex-flow: column-reverse;
+    -webkit-flex-flow: column-reverse;
+    height: auto;
   }
 `
 export const SubmitBtn = styled.button`
@@ -147,6 +279,11 @@ export const SubmitBtn = styled.button`
   :focus {
     outline: none;
   }
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+    height: 70px;
+    font-size: 1.2em;
+  }
 `
 export const Error = styled.p`
   padding: 15px 30px 15px;
@@ -157,14 +294,23 @@ export const Error = styled.p`
   margin: 0 0 1vw;
   opacity: ${props => (props.error === "" ? 0 : 1)};
   transition: 0.3s ease-in-out;
+
+  @media all and (max-width: ${medium}) {
+    width: 100%;
+  }
 `
 export const ReturnBtn = styled.button`
   border: none;
   background: none;
   font-size: 1em;
   cursor: pointer;
+  display: ${props => (props.validate ? "none" : "block")};
 
   :focus {
     outline: none;
+  }
+
+  @media all and (max-width: ${medium}) {
+    margin: 8vw 0 0;
   }
 `

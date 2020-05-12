@@ -3,6 +3,7 @@ import { colors } from "../../theme"
 
 export const AccountWrapper = styled.div`
   width: auto;
+  min-width: 10vw;
   height: 100%;
   display: flex;
   align-items: center;

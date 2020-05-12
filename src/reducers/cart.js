@@ -31,6 +31,9 @@ export const cart = (state = [], action) => {
         return filtered
       }
     }
+    case "RESET_CART": {
+      return []
+    }
     default: {
       return state
     }
