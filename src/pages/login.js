@@ -1,10 +1,7 @@
 import React, { Component } from "react"
 import {
   FormWrapper,
-  LeftSide,
   RightSide,
-  ImageContainer,
-  Img,
   Form,
   Title,
   Name,
@@ -25,6 +22,7 @@ import { navigate } from "gatsby"
 import { connect } from "react-redux"
 import { logIn, getUserData } from "../actions"
 import SwitchForm from "../components/forms/switchForm"
+import LeftSide from "../components/forms/leftSide"
 
 class Login extends Component {
   state = {
@@ -106,17 +104,7 @@ class Login extends Component {
     return (
       <FormWrapper>
         <HeaderlessLayout />
-        <LeftSide>
-          <ImageContainer>
-            <Img src={image} />
-          </ImageContainer>
-          <ImageContainer>
-            <Img src={image} />
-          </ImageContainer>
-          <ImageContainer>
-            <Img src={image} />
-          </ImageContainer>
-        </LeftSide>
+        <LeftSide leftImg={image} centerImg={image} rightImg={image} />
         <RightSide>
           <Form onSubmit={e => this.handleSubmit(e)}>
             <Title>Login</Title>
