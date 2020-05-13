@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import {
   CartProductWrapper,
   ProductImage,
@@ -20,6 +20,7 @@ const CartProduct = ({ product, formatPrice, quantity }) => {
     e.preventDefault()
     dispatch(removeFromCart(product))
   }
+
   return (
     <CartProductWrapper key={product.id}>
       <ProductImage>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   HeaderWrapper,
   Nav,
@@ -7,16 +7,24 @@ import {
   ProductAmount,
   Value,
   BurgerMenuBtn,
+  Line,
 } from "./header.styled"
 import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { useSelector, useDispatch } from "react-redux"
-import { toggleCart } from "../../actions"
+import { toggleCart, handleModal } from "../../actions"
+import { store } from "../../state/ReduxWrapper"
 import Account from "../account"
+import BurgerMenu from "../burgerMenu"
 
 const Header = () => {
   const logged = useSelector(state => state.isLogged)
   const cart = useSelector(state => state.cart)
+  const modal = useSelector(state => state.modal)
   const dispatch = useDispatch()
+  const [isMenu, setMenu] = useState(false)
+
+  store.subscribe(() => calculateCart())
 
   const calculateCart = () => {
     const totalQuantity = cart.reduce((acc, product) => {
@@ -24,15 +32,28 @@ const Header = () => {
     }, 0)
     return totalQuantity
   }
+  const handleCart = () => {
+    dispatch(toggleCart())
+    if (modal) {
+      dispatch(handleModal())
+    }
+  }
+  const handleLink = () => {
+    setMenu(!isMenu)
+  }
 
   return (
     <HeaderWrapper>
-      <Link to="/">logo</Link>
+      <AniLink paintDrip direction="down" duration={1} to="/">
+        logo
+      </AniLink>
       <Nav>
-        <Link to="/products">Products</Link>
+        <AniLink paintDrip direction="down" duration={1} to="/products">
+          Products
+        </AniLink>
       </Nav>
       <Menage>
-        <CartBtn onClick={() => dispatch(toggleCart())}>
+        <CartBtn cartLength={cart.length} onClick={() => handleCart()}>
           <ProductAmount cartLength={cart.length}>
             <Value>{calculateCart()}</Value>
           </ProductAmount>
@@ -66,7 +87,11 @@ const Header = () => {
           </svg>
         </CartBtn>
         {logged ? <Account /> : <Link to="/login">Log in</Link>}
-        <BurgerMenuBtn></BurgerMenuBtn>
+        <BurgerMenuBtn isMenu={isMenu} onClick={() => setMenu(!isMenu)}>
+          <Line />
+          <Line />
+        </BurgerMenuBtn>
+        <BurgerMenu handleLink={handleLink} isMenu={isMenu} />
       </Menage>
     </HeaderWrapper>
   )

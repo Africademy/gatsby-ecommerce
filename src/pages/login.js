@@ -52,9 +52,7 @@ class Login extends Component {
   }
   handleGoBack = e => {
     e.preventDefault()
-    if (window) {
-      window.history.back()
-    }
+    navigate("/")
   }
   handleSubmit = e => {
     e.preventDefault()

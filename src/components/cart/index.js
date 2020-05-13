@@ -16,6 +16,7 @@ import {
 import CartProduct from "../cartProduct"
 import EmptyCart from "../emptyCart"
 import Trash from "../trashIcon"
+import { store } from "../../state/ReduxWrapper"
 import { loadStripe } from "@stripe/stripe-js"
 
 const Cart = ({ toggleCartProp }) => {
@@ -23,7 +24,6 @@ const Cart = ({ toggleCartProp }) => {
   const cart = useSelector(state => state.cart)
   useEffect(() => {}, [cart])
   // TODO update component every time when quantity changes
-  // TODO add btn for removing all items in cart
 
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -36,6 +36,9 @@ const Cart = ({ toggleCartProp }) => {
       return total
     }
   }
+
+  store.subscribe(() => totalPrice())
+
   const handleClose = e => {
     e.preventDefault()
     dispatch(toggleCart())
@@ -56,15 +59,12 @@ const Cart = ({ toggleCartProp }) => {
     stripe
       .redirectToCheckout({
         items: sku,
-
-        // https://stripe.com/docs/payments/checkout/fulfillment
         successUrl: "http://localhost:8000/success",
         cancelUrl: "http://localhost:8000/canceled",
       })
       .then(function (result) {
         if (result.error) {
-          const displayError = document.getElementById("error-message")
-          displayError.textContent = result.error.message
+          alert(result.error)
         }
       })
   }

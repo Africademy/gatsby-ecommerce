@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
+import { small } from "../../breakpoints"
 
 export const CartWrapper = styled.main`
   width: 100vw;
@@ -23,6 +24,14 @@ export const CartContainer = styled.form`
   background-color: #ffffff;
   border-radius: 10px;
   overflow: scroll;
+
+  @media all and (max-width: ${small}) {
+    width: 100vw;
+    height: 80vh;
+    border-radius: 20px 20px 0 0;
+    position: fixed;
+    bottom: 0;
+  }
 `
 export const Header = styled.section`
   width: 50vw;
@@ -40,6 +49,11 @@ export const Header = styled.section`
   box-shadow: 0 4.9px 5.3px -21px rgba(0, 0, 0, 0.048),
     0 16.3px 17.9px -21px rgba(0, 0, 0, 0.072),
     0 73px 80px -21px rgba(0, 0, 0, 0.12);
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    padding: 0 5vw 0;
+  }
 `
 export const CloseCartBtn = styled.button`
   width: 3vw;
@@ -55,6 +69,10 @@ export const CloseCartBtn = styled.button`
 
   :focus {
     outline: none;
+  }
+  @media all and (max-width: ${small}) {
+    height: 10vw;
+    width: 10vw;
   }
 `
 export const RemoveAllBtn = styled.button`
@@ -115,6 +133,14 @@ export const RemoveAllBtn = styled.button`
     stroke: #b51413;
     transition: 0.3s ease-in-out;
   }
+
+  @media all and (max-width: ${small}) {
+    height: 10vw;
+    width: 10vw;
+    :before {
+      bottom: -60%;
+    }
+  }
 `
 export const CartContent = styled.section`
   width: 100%;
@@ -141,6 +167,11 @@ export const CheckoutBtn = styled.button`
   color: #000;
   font-weight: 600;
   cursor: pointer;
+
+  @media all and (max-width: ${small}) {
+    width: 50%;
+    font-size: 1.2em;
+  }
 `
 export const FillCart = styled.button`
   width: max-content;
@@ -171,4 +202,10 @@ export const Summary = styled.section`
   box-shadow: 0 0px 5.3px -21px rgba(0, 0, 0, 0.048),
     0 0px 17.9px -21px rgba(0, 0, 0, 0.072),
     0 0px 80px -21px rgba(0, 0, 0, 0.12);
+
+  @media all and (max-width: ${small}) {
+    width: 100%;
+    bottom: 0;
+    padding: 0 5vw 0;
+  }
 `

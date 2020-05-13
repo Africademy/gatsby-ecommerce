@@ -35,7 +35,11 @@ const Account = () => {
         </svg>
       </ImageContainer>
       <MyAccount dropdown={dropdown}>
-        {logged.userData.firstName} {logged.userData.surName}
+        {logged.userData !== undefined ? (
+          `${logged.userData.firstName} ${logged.userData.surName}`
+        ) : (
+          <p>My Account</p>
+        )}
         <svg height={25} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <g fill="none">
             <path

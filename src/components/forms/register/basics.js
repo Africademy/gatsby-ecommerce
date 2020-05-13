@@ -17,6 +17,7 @@ const Basics = ({
   togglePass,
   togglePassword,
   handleInput,
+  inputType,
 }) => {
   return (
     <>
@@ -58,7 +59,7 @@ const Basics = ({
           value={password}
           onChange={e => handleInput(e)}
           name="password"
-          type="password"
+          type={inputType}
         />
       </InputContainer>
       <TogglePassword>

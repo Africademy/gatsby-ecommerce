@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import Layout from "../components/layout"
 import { ProductsWrapper, List } from "../components/products/products.styled"
 import Product from "../components/product"
-import Filters from "../components/filters"
 import { StaticQuery, graphql } from "gatsby"
 import { loadStripe } from "@stripe/stripe-js"
 import Modal from "../components/modal"
@@ -33,7 +32,6 @@ class Products extends Component {
       <Layout>
         <ProductsWrapper>
           <Modal />
-          <Filters />
           <List>
             <StaticQuery
               query={PRODUCTS}

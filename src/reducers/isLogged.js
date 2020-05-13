@@ -1,4 +1,4 @@
-export const isLogged = (state = false, action) => {
+export const isLogged = (state = true, action) => {
   switch (action.type) {
     case "IS_LOGGED": {
       return !state

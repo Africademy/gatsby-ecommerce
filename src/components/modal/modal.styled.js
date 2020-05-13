@@ -1,12 +1,14 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
+import { small } from "../../breakpoints"
 
 export const ModalWrapper = styled.main`
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
   z-index: 80;
   display: flex;
   justify-content: center;
@@ -30,6 +32,11 @@ export const ModalContent = styled.section`
   opacity: ${props => (props.isOpen ? 1 : 0)};
   transform: translateY(${props => (props.isOpen ? 0 : "50px")});
   transition: 0.4s ease-in-out;
+
+  @media all and (max-width: ${small}) {
+    width: 80%;
+    height: 35%;
+  }
 `
 export const Title = styled.h3`
   font-size: 1.8em;
@@ -54,6 +61,10 @@ export const CTAButton = styled.button`
   :focus {
     outline: none;
   }
+  @media all and (max-width: ${small}) {
+    font-size: 1.2em;
+    margin: 2vw 0 0;
+  }
 `
 export const Btns = styled.section`
   width: 100%;
@@ -63,4 +74,8 @@ export const Btns = styled.section`
   -webkit-flex-flow: column;
   justify-content: space-between;
   -webkit-justify-content: space-between;
+
+  @media all and (max-width: ${small}) {
+    height: auto;
+  }
 `

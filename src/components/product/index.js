@@ -23,7 +23,6 @@ const Product = ({ product }) => {
     e.preventDefault()
     dispatch(handleModal(product))
     dispatch(addToCart(product))
-    // TODO finish handling modal (redirecting btns etc)
   }
 
   return product.nodes.map(product => {

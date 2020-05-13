@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
+import { small } from "../../breakpoints"
 
 export const AccountWrapper = styled.div`
   width: auto;
@@ -17,6 +18,9 @@ export const AccountWrapper = styled.div`
   :hover {
     transition: 0.3s ease-in-out;
     background-color: #efefef;
+  }
+  @media all and (max-width: ${small}) {
+    display: none;
   }
 `
 export const ImageContainer = styled.div`

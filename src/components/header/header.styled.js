@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small, medium, large, xlarge } from "../../breakpoints"
+import { small, medium, large } from "../../breakpoints"
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
@@ -12,8 +12,8 @@ export const HeaderWrapper = styled.header`
   -webkit-align-items: center;
   background-color: #fff;
   position: sticky;
-  z-index: 100;
   top: 0;
+  z-index: 100;
 `
 export const Nav = styled.nav`
   width: 50%;
@@ -88,18 +88,46 @@ export const CartBtn = styled.button`
     transition: 0.3s ease-in-out;
   }
   :hover ${ProductAmount} {
-    transform: rotate(10deg);
+    transform: rotate(10deg) scale(${props => (props.cartLength > 0 ? 1 : 0)});
   }
 `
 export const Value = styled.p`
   font-size: 1em;
 `
-
+export const Line = styled.span`
+  width: 80%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #000000;
+  transform-origin: 0 50%;
+  transition: 0.3s ease-in-out;
+`
 export const BurgerMenuBtn = styled.button`
   display: none;
   @media all and (max-width: ${small}) {
-    display: block;
-    height: 6vh;
+    display: flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 4vh;
     width: 6vh;
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    span:nth-child(1) {
+      ${props =>
+        props.isMenu
+          ? "transform: translateX(5px) translateY(-8px) rotate(45deg);"
+          : ""}
+    }
+    span:nth-child(2) {
+      ${props =>
+        props.isMenu
+          ? "transform: translateX(5px) translateY(8px) rotate(-45deg);"
+          : ""}
+    }
   }
 `

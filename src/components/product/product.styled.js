@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components"
-import { small, medium, large, xlarge } from "../../breakpoints"
+import { small, medium, large } from "../../breakpoints"
 
 const addToAnimation = keyframes`
   0% {
