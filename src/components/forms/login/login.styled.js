@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components"
-import { small, medium } from "../../../breakpoints"
+import { small, medium, large, xlarge } from "../../../breakpoints"
 import { colors } from "../../../theme"
 
 export const HeaderlessLayout = createGlobalStyle`
@@ -45,6 +45,12 @@ export const RightSide = styled.section`
     width: 100%;
     height: 80%;
   }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 100%;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 55%;
+  }
 `
 export const Form = styled.form`
   width: 70%;
@@ -56,7 +62,11 @@ export const Form = styled.form`
     height: 100%;
   }
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
-    width: 80%;
+    width: 70%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${xlarge}) {
+    width: 100%;
+    margin: 0 0 0 5vw;
   }
 `
 export const Title = styled.h3`

@@ -16,6 +16,7 @@ const Address = ({
   country,
   handleInput,
   handlePostalCode,
+  validateAddress,
 }) => {
   return (
     <>

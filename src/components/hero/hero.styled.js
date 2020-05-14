@@ -143,9 +143,8 @@ export const HeroBackground = styled.section`
   width: 50%;
 `
 export const Shape = styled.img`
-  position: absolute;
-  bottom: -50%;
-  left: -20%;
+  position: relative;
+  top: 40%;
   opacity: 0.2;
-  transform: scale(3) rotate(30deg);
+  transform: scale(2.5) rotate(30deg);
 `

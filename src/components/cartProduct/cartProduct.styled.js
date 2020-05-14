@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { small, medium, large, xlarge } from "../../breakpoints"
 
 export const RemoveBtn = styled.button`
   padding: 15px 30px 15px;
@@ -18,7 +19,7 @@ export const RemoveBtn = styled.button`
 export const CartProductWrapper = styled.div`
   width: 90%;
   height: 20vh;
-  background-color: #eaeaea;
+  background-color: #ffffff;
   display: flex;
   margin: 0 0 1vw;
   border-radius: 15px;
@@ -39,9 +40,13 @@ export const ProductImage = styled.div`
   overflow: hidden;
 `
 export const Img = styled.img`
-  height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: center center;
+
+  @media all and (max-width: ${xlarge}) {
+    height: 100%;
+  }
 `
 export const ProductDetails = styled.div`
   width: 75%;

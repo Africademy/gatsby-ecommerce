@@ -16,7 +16,8 @@ export const BurgerWrapper = styled.main`
     z-index: -1;
     top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, ${props => (props.isMenu ? 0.4 : 0)});
+    background-color: rgba(0, 0, 0, 0.4);
+    visibility: ${props => (props.isMenu ? "visible" : "hidden")};
     transition: 0.3s ease-in-out;
   }
 `
@@ -51,6 +52,10 @@ export const Menu = styled.nav`
         color: #fff;
         font-size: 1.5em;
       }
+    }
+    section {
+      position: absolute;
+      bottom: 15vw;
     }
   }
 `

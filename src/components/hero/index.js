@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
   HeroWrapper,
   HeroContent,
@@ -14,14 +14,29 @@ import shoes from "../../static/shoes.png"
 import hoodie from "../../static/hoodie.jpg"
 import shoulder from "../../static/shoulder.jpg"
 import shape from "../../static/hero-shape.svg"
-import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import gsap, { CSSPlugin } from "gsap"
+import { Controller, Scene } from "react-scrollmagic"
+import { Tween } from "react-gsap"
+gsap.registerPlugin(CSSPlugin)
 
 const Hero = () => {
+  useEffect(() => {
+    const tl = gsap.timeline({ duration: 1.5 })
+    tl.from("#title", {
+      translateY: "5vw",
+      opacity: 0,
+    })
+    tl.from("#cta", {
+      translateX: "-5vw",
+      opacity: 0,
+    })
+  }, [])
   return (
     <HeroWrapper>
       <HeroContent>
-        <Title>Biggest streetwear store in your country</Title>
-        <Link to="/products">
+        <Title id="title">Biggest streetwear store in your country</Title>
+        <AniLink id="cta" to="/products">
           <CTABtn>
             Explore
             <svg
@@ -39,18 +54,45 @@ const Hero = () => {
               </g>
             </svg>
           </CTABtn>
-        </Link>
+        </AniLink>
       </HeroContent>
       <HeroImages>
-        <ImageContainer>
-          <Img src={hoodie} />
-        </ImageContainer>
-        <ImageContainer>
-          <Img src={shoes} />
-        </ImageContainer>
-        <ImageContainer>
-          <Img src={shoulder} />
-        </ImageContainer>
+        <Controller>
+          <Scene
+            duration={300}
+            indicators={true}
+            triggerElement="#cta"
+            triggerHook="onCenter"
+          >
+            <Tween></Tween>
+          </Scene>
+        </Controller>
+        <Controller>
+          <Scene
+            duration={600}
+            indicators={true}
+            triggerElement="#cta"
+            triggerHook="onCenter"
+          >
+            <Tween>
+              <ImageContainer>
+                <Img src={shoes} />
+              </ImageContainer>
+            </Tween>
+          </Scene>
+        </Controller>
+        <Controller>
+          <Scene
+            duration={600}
+            indicators={true}
+            triggerElement="#cta"
+            triggerHook="onCenter"
+          >
+            <Tween>
+              <Img src={shoulder} />
+            </Tween>
+          </Scene>
+        </Controller>
       </HeroImages>
       <HeroBackground>
         <Shape src={shape} alt="abstract-shape" />
@@ -60,3 +102,7 @@ const Hero = () => {
 }
 
 export default Hero
+
+/*
+<Shape src={shape} alt="abstract-shape" />
+ */

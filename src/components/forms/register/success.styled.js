@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { small } from "../../../breakpoints"
 import { colors } from "../../../theme"
 
 export const RegisterSuccessWrapper = styled.main`
@@ -7,6 +8,18 @@ export const RegisterSuccessWrapper = styled.main`
   display: flex;
   justify-content: center;
   -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  }
+`
+export const Content = styled.section`
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
   align-items: center;
   -webkit-align-items: center;
 
@@ -30,24 +43,16 @@ export const RegisterSuccessWrapper = styled.main`
         0 69px 80px -10px rgba(255, 193, 5, 0.12);
     }
   }
-`
-export const Content = styled.section`
-  width: 100%;
-  height: 25%;
-  display: flex;
-  flex-flow: column;
-  -webkit-flex-flow: column;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  align-items: center;
-  -webkit-align-items: center;
+
+  @media all and (max-width: ${small}) {
+    width: 80%;
+    text-align: center;
+
+    a {
+      font-size: 1.2em;
+    }
+  }
 `
 export const Message = styled.h3`
   font-size: 1.5em;
-`
-export const CountDown = styled.p`
-  font-size: 1.2em;
-`
-export const Counter = styled.span`
-  font-weight: 600;
 `

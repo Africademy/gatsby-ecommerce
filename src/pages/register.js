@@ -61,6 +61,18 @@ class Register extends Component {
       this.setState({ validBasics: true, notValid: "" })
     }
   }
+  validateAddress = () => {
+    const { street, postalCode1, postalCode2, city, country } = this.state
+    if (
+      street === "" ||
+      postalCode1 === "" ||
+      postalCode2 === "" ||
+      city === "" ||
+      country === ""
+    ) {
+      this.setState({ validBasics: false })
+    }
+  }
   handlePostalCode = e => {
     if (parseInt(e.target.value) < 100) {
       this.setState({ [e.target.name]: e.target.value })
@@ -105,6 +117,7 @@ class Register extends Component {
             country={this.state.country}
             handleInput={this.handleInput}
             handlePostalCode={this.handlePostalCode}
+            validateAddress={this.validateAddress}
           />
         )
       }
@@ -206,6 +219,7 @@ class Register extends Component {
           togglePass: !this.state.togglePass,
         })
   }
+
   render() {
     return (
       <FormWrapper>

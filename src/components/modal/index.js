@@ -9,6 +9,8 @@ import {
 } from "./modal.styled"
 import { useSelector, useDispatch } from "react-redux"
 import { handleModal, toggleCart } from "../../actions"
+import CartIcon from "../header/cartIcon"
+import WalletIcon from "./buyMoreIcon"
 
 const Modal = () => {
   const dispatch = useDispatch()
@@ -26,8 +28,14 @@ const Modal = () => {
         <Title>Item added to cart</Title>
         <UXText>What do you want to do now?</UXText>
         <Btns>
-          <CTAButton onClick={() => handleCart()}>Order & Pay</CTAButton>
-          <CTAButton onClick={() => handleShopping()}>Buy more</CTAButton>
+          <CTAButton onClick={() => handleCart()}>
+            <CartIcon height={20} />
+            Order & Pay
+          </CTAButton>
+          <CTAButton onClick={() => handleShopping()}>
+            <WalletIcon height={20} />
+            Buy more
+          </CTAButton>
         </Btns>
       </ModalContent>
     </ModalWrapper>

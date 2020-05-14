@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { small, medium, large } from "../../breakpoints"
+import { small, medium, large, xlarge } from "../../breakpoints"
+import { colors } from "../../theme"
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
@@ -21,7 +22,7 @@ export const Nav = styled.nav`
     display: none;
   }
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
-    width: 40%;
+    width: 30%;
   }
 `
 export const Menage = styled.section`
@@ -34,9 +35,10 @@ export const Menage = styled.section`
 
   a {
     padding: 20px 40px 20px;
-    background-color: #1b1b28;
-    color: #fff;
-    border-radius: 25px;
+    background-color: ${colors.cta};
+    color: #000;
+    font-weight: 500;
+    border-radius: 5px;
 
     @media all and (max-width: ${small}) {
       display: none;
@@ -47,10 +49,13 @@ export const Menage = styled.section`
   }
 
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
-    width: 35%;
+    width: 45%;
   }
   @media all and (min-width: ${medium}) and (max-width: ${large}) {
-    width: 25%;
+    width: 35%;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 30%;
   }
 `
 export const ProductAmount = styled.div`

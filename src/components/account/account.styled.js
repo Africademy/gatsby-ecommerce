@@ -23,31 +23,6 @@ export const AccountWrapper = styled.div`
     display: none;
   }
 `
-export const ImageContainer = styled.div`
-  width: 4vh;
-  height: 4vh;
-  border-radius: 50px;
-  overflow: hidden;
-  margin: 0 1vw 0 0;
-  display: flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
-`
-export const MyAccount = styled.h3`
-  font-size: 1.1em;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  -webkit-align-items: center;
-
-  svg {
-    margin: 0 0 0 1vw;
-    transition: 0.3s ease-in-out;
-    transform: rotate(${props => (props.dropdown ? "180deg" : 0)});
-  }
-`
 export const Dropdown = styled.ul`
   width: 100%;
   position: absolute;

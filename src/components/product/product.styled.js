@@ -1,14 +1,7 @@
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { small, medium, large } from "../../breakpoints"
+import { colors } from "../../theme"
 
-const addToAnimation = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-`
 export const Img = styled.img`
   height: 100%;
   width: auto;
@@ -99,50 +92,68 @@ export const Price = styled.p`
   }
 `
 export const AddToCart = styled.button`
-  height: 3.5vw;
-  width: 3.5vw;
-  background-color: #d7d7d7;
-  border-radius: 50px;
+  width: 110%;
+  height: 60px;
+  background-color: ${colors.cta};
+  border-radius: 30px 0 0 0;
   position: absolute;
   z-index: 2;
-  bottom: 1vw;
-  right: 1vw;
+  bottom: 0;
+  right: 0;
+  font-size: 1.1em;
+  font-weight: 600;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  overflow: hidden;
   :focus {
     outline: none;
   }
   svg {
-    transition: 0.2s ease-in-out;
+    height: 50%;
+    margin: 0 10px 0 0;
+    transition: 0.4s ease-in-out;
   }
   :hover {
-    background-color: #0f7dff;
     transition: 0.2s ease-in-out;
-  }
-  :hover:before {
-    opacity: 1;
-  }
-  :hover svg {
-    animation: 0.2s ${addToAnimation} linear;
+    box-shadow: 0 0 1.9px -10px rgba(0, 0, 0, 0.039),
+      0 0 4.3px -10px rgba(0, 0, 0, 0.056), 0 0 7.7px -10px rgba(0, 0, 0, 0.069),
+      0 0 12.8px -10px rgba(0, 0, 0, 0.081),
+      0 0 21.2px -10px rgba(0, 0, 0, 0.094), 0 0 37px -10px rgba(0, 0, 0, 0.111),
+      0 0 80px -10px rgba(0, 0, 0, 0.15);
+    color: transparent;
+
+    svg {
+      transform: translateX(7vw);
+      transition: 0.4s ease-in-out;
+    }
   }
 
-  @media all and (max-width: ${medium}) {
+  @media all and (max-width: ${small}) {
     width: 100%;
-    height: 60px;
     position: relative;
-    right: 0;
+    border-radius: 50px;
+    :hover {
+      transform: none;
+    }
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 100%;
+    position: relative;
+    border-radius: 50px;
+    :hover {
+      transform: none;
+    }
   }
   @media all and (min-width: ${medium}) and (max-width: ${large}) {
-    width: 90%;
+    width: 110%;
     position: absolute;
 
-    left: 50%;
-    margin-left: -45%;
+    right: 0;
     height: 60px;
-    bottom: 2vw;
+    bottom: 0;
   }
 `

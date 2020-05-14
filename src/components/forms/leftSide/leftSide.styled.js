@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { medium, small } from "../../../breakpoints"
+import { small, medium, large, xlarge } from "../../../breakpoints"
 
 export const LeftSideWrapper = styled.section`
   width: 50%;
@@ -15,43 +15,27 @@ export const LeftSideWrapper = styled.section`
     align-self: flex-start;
   }
   div:nth-child(3) {
-    height: 50%;
+    height: 100%;
     align-self: flex-end;
   }
   @media all and (max-width: ${small}) {
-    width: 100%;
-    height: 30%;
-    overflow: hidden;
-
-    div:nth-child(1) {
-      top: -20%;
-      left: 0;
-    }
-    div:nth-child(2) {
-      left: 35%;
-      top: -30%;
-    }
-    div:nth-child(3) {
-      right: 0;
-      top: -35%;
-    }
+    display: none;
   }
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
-    height: 15%;
-    width: 100%;
-
+    display: none;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 20%;
+    padding: 0;
     div:nth-child(1) {
-      top: -30%;
-      left: 0;
+      display: none;
     }
     div:nth-child(2) {
-      left: 35%;
-      top: -35%;
+      display: none;
     }
-    div:nth-child(3) {
-      right: 0;
-      top: -40%;
-    }
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 45%;
   }
 `
 export const ImageContainer = styled.div`
@@ -75,6 +59,10 @@ export const ImageContainer = styled.div`
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
     position: absolute;
     height: 50%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    height: 100%;
+    width: 100%;
   }
 `
 export const Img = styled.img`

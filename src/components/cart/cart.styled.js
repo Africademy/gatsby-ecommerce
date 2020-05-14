@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
-import { small } from "../../breakpoints"
+import { small, medium, large, xlarge } from "../../breakpoints"
 
 export const CartWrapper = styled.main`
   width: 100vw;
@@ -21,7 +21,7 @@ export const CartWrapper = styled.main`
 export const CartContainer = styled.form`
   width: 50vw;
   height: 60vh;
-  background-color: #ffffff;
+  background-color: #f3f3f3;
   border-radius: 10px;
   overflow: scroll;
 
@@ -32,11 +32,22 @@ export const CartContainer = styled.form`
     position: fixed;
     bottom: 0;
   }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 80vw;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 70vw;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 60vw;
+  }
 `
 export const Header = styled.section`
   width: 50vw;
   height: 10vh;
   display: flex;
+  flex-flow: row-reverse;
+  -webkit-flex-flow: row-reverse;
   justify-content: space-between;
   -webkit-justify-content: space-between;
   border-radius: 10px 10px 0 0;
@@ -54,7 +65,19 @@ export const Header = styled.section`
     width: 100%;
     padding: 0 5vw 0;
   }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 80vw;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 70vw;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 60vw;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+  }
 `
+
 export const CloseCartBtn = styled.button`
   width: 3vw;
   height: 3vw;
@@ -73,6 +96,14 @@ export const CloseCartBtn = styled.button`
   @media all and (max-width: ${small}) {
     height: 10vw;
     width: 10vw;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 6vw;
+    height: 6vw;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 5vw;
+    height: 5vw;
   }
 `
 export const RemoveAllBtn = styled.button`
@@ -141,6 +172,27 @@ export const RemoveAllBtn = styled.button`
       bottom: -60%;
     }
   }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 7vw;
+    height: 7vw;
+    :before {
+      bottom: -50%;
+    }
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 5vw;
+    height: 5vw;
+    :before {
+      bottom: -50%;
+    }
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 4vw;
+    height: 4vw;
+    :before {
+      bottom: -50%;
+    }
+  }
 `
 export const CartContent = styled.section`
   width: 100%;
@@ -160,16 +212,22 @@ export const Total = styled.h3`
 `
 export const CheckoutBtn = styled.button`
   font-size: 1em;
-  padding: 20px 40px 20px;
+  padding: ${props => (props.redirect ? "15px 30px 15px" : "20px 40px 20px")};
   border: none;
   border-radius: 50px;
   background-color: ${colors.cta};
   color: #000;
   font-weight: 600;
+  width: max-content;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  transition: 0.3s ease-in-out;
 
   @media all and (max-width: ${small}) {
-    width: 50%;
     font-size: 1.2em;
   }
 `
@@ -207,5 +265,14 @@ export const Summary = styled.section`
     width: 100%;
     bottom: 0;
     padding: 0 5vw 0;
+  }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 80vw;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 70vw;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 60vw;
   }
 `

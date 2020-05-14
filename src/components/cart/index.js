@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleCart, resetCart } from "../../actions"
 import {
@@ -18,10 +18,13 @@ import EmptyCart from "../emptyCart"
 import Trash from "../trashIcon"
 import { store } from "../../state/ReduxWrapper"
 import { loadStripe } from "@stripe/stripe-js"
+import Loading from "../loading"
+import { colors } from "../../theme"
 
 const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
+  const [redirect, setRedirect] = useState(false)
   useEffect(() => {}, [cart])
   // TODO update component every time when quantity changes
 
@@ -50,6 +53,7 @@ const Cart = ({ toggleCartProp }) => {
 
   const handleCheckout = async (e, cart) => {
     e.preventDefault()
+    setRedirect(!redirect)
     const sku = cart.map(product => {
       return { sku: product.product.id, quantity: product.quantity }
     })
@@ -110,7 +114,16 @@ const Cart = ({ toggleCartProp }) => {
           {cart.length > 0 ? (
             <Summary>
               <Total>Total: {formatPrice(totalPrice())}</Total>
-              <CheckoutBtn role="submit" onClick={e => handleCheckout(e, cart)}>
+              <CheckoutBtn
+                redirect={redirect}
+                role="submit"
+                onClick={e => handleCheckout(e, cart)}
+              >
+                {redirect ? (
+                  <Loading spinnerColor={colors.cta} borderColor={"#000"} />
+                ) : (
+                  ""
+                )}
                 Checkout
               </CheckoutBtn>
             </Summary>

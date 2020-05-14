@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small, large, medium } from "../../breakpoints"
+import { small, large, medium, xlarge } from "../../breakpoints"
 
 export const ProductsWrapper = styled.main`
   width: 100vw;
@@ -26,6 +26,9 @@ export const List = styled.section`
     -webkit-flex-flow: column;
   }
   @media all and (min-width: ${small}) and (max-width: ${large}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
     grid-template-columns: repeat(2, 1fr);
   }
 `

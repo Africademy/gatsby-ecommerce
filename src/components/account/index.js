@@ -1,14 +1,9 @@
 import React, { useState } from "react"
-import {
-  AccountWrapper,
-  ImageContainer,
-  MyAccount,
-  Dropdown,
-  DropdownItem,
-  Name,
-} from "./account.styled"
+import { AccountWrapper, Dropdown, DropdownItem, Name } from "./account.styled"
 import { useDispatch, useSelector } from "react-redux"
 import { logIn } from "../../actions"
+import Avatar from "./avatar"
+import UserData from "./userData"
 
 const Account = () => {
   const [dropdown, setDropdown] = useState(false)
@@ -16,41 +11,8 @@ const Account = () => {
   const logged = useSelector(state => state.isLogged)
   return (
     <AccountWrapper onClick={() => setDropdown(!dropdown)}>
-      <ImageContainer>
-        <svg height={30} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none">
-            <path
-              d="M7 18v-1a5 5 0 0 1 10 0v1"
-              stroke="#000000"
-              strokeWidth="1.5"
-            />
-            <path
-              d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeWidth="1.5"
-            />
-            <circle cx="12" cy="12" r="11" stroke="#000000" strokeWidth="1.5" />
-          </g>
-        </svg>
-      </ImageContainer>
-      <MyAccount dropdown={dropdown}>
-        {logged.userData !== undefined ? (
-          `${logged.userData.firstName} ${logged.userData.surName}`
-        ) : (
-          <p>My Account</p>
-        )}
-        <svg height={25} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none">
-            <path
-              d="M6 9l6 6 6-6"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeWidth="1.5"
-            />
-          </g>
-        </svg>
-      </MyAccount>
+      <Avatar height={30} />
+      <UserData logged={logged} dropdown={dropdown} icon={true} />
       <Dropdown dropdown={dropdown}>
         <DropdownItem>
           <svg

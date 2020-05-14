@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
-import { small } from "../../breakpoints"
+import { small, medium, large, xlarge } from "../../breakpoints"
 
 export const ModalWrapper = styled.main`
   width: 100vw;
@@ -37,6 +37,15 @@ export const ModalContent = styled.section`
     width: 80%;
     height: 35%;
   }
+  @media all and (min-width: ${small}) and (max-width: ${medium}) {
+    width: 45%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 40%;
+  }
+  @media all and (min-width: ${large}) and (max-width: ${xlarge}) {
+    width: 35%;
+  }
 `
 export const Title = styled.h3`
   font-size: 1.8em;
@@ -57,6 +66,14 @@ export const CTAButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  svg {
+    margin: 0 0.5vw 0 0;
+  }
 
   :focus {
     outline: none;
