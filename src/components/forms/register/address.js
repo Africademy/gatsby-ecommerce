@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import { Input, InputContainer, Label } from "../login/login.styled"
 import {
   PostalCode,
@@ -7,19 +7,26 @@ import {
   CityContainer,
   PostalCodeContainer,
 } from "./register.styled"
+import gsap, { CSSPlugin } from "gsap"
 
 const Address = ({
   street,
-  postalCode1,
-  postalCode2,
+  postalCode,
   city,
   country,
   handleInput,
   handlePostalCode,
   validateAddress,
 }) => {
+  const form = useRef()
+  useEffect(() => {
+    gsap.from(form.current, {
+      translateX: "10vw",
+      opacity: 0,
+    })
+  }, [])
   return (
-    <>
+    <section ref={form}>
       <InputContainer>
         <Label htmlFor="street">Street</Label>
         <Input
@@ -34,21 +41,11 @@ const Address = ({
           <Label htmlFor="postalCode">Postal code</Label>
           <PostalCode>
             <Number
-              placeholder="00"
-              value={postalCode1}
+              placeholder="00-000"
+              value={postalCode}
               name="postalCode1"
               onChange={e => handlePostalCode(e)}
-              max="99"
-              type="number"
-            />
-            -
-            <Number
-              max="999"
-              value={postalCode2}
-              onChange={e => handlePostalCode(e)}
-              name="postalCode2"
-              placeholder="000"
-              type="number"
+              type="text"
             />
           </PostalCode>
         </PostalCodeContainer>
@@ -71,7 +68,7 @@ const Address = ({
           type="text"
         />
       </InputContainer>
-    </>
+    </section>
   )
 }
 

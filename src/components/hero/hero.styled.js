@@ -10,7 +10,7 @@ export const HeroWrapper = styled.main`
   -webkit-align-items: center;
   justify-content: space-between;
   -webkit-justify-content: space-between;
-  padding: 0 5vw 0;
+  padding: 10vh 5vw 0;
   position: relative;
 `
 export const HeroContent = styled.section`
@@ -73,27 +73,15 @@ export const HeroImages = styled.section`
   -webkit-justify-content: space-between;
   align-items: center;
   -webkit-align-items: center;
-
-  div:nth-child(1) img {
-    transform: rotate(0deg);
-    object-position: 0 0;
-    height: 100%;
+  div:nth-child(1) div:nth-child(1) img {
+    height: 70%;
+    transform: rotate(-30deg);
     :hover {
-      transform: scale(1.1);
-      transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: rotate(-30deg) scale(1.1);
     }
   }
   div:nth-child(2) {
     height: 90%;
-  }
-  div:nth-child(3) img {
-    transform: rotate(0deg);
-    object-position: 0 0;
-    height: 100%;
-    :hover {
-      transform: scale(1.1);
-      transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
   }
 
   @media all and (max-width: ${medium}) {
@@ -110,28 +98,6 @@ export const HeroImages = styled.section`
     div:nth-child(3) {
       width: 45%;
     }
-  }
-`
-export const Img = styled.img`
-  object-fit: cover;
-  object-position: 100% -5vw;
-  height: 80%;
-  width: auto;
-  transform: rotate(-30deg);
-  transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-`
-export const ImageContainer = styled.div`
-  width: 30%;
-  height: 100%;
-  background-color: #ffc105;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  :hover ${Img} {
-    transform: rotate(-30deg) scale(1.1);
-    transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 `
 export const HeroBackground = styled.section`

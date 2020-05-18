@@ -30,6 +30,11 @@ export const Btns = styled.section`
   -webkit-justify-content: space-between;
   align-items: center;
   -webkit-align-items: center;
+  a {
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+  }
 
   @media all and (max-width: ${small}) {
     flex-flow: column-reverse;
@@ -169,7 +174,7 @@ export const CityContainer = styled.div`
 `
 export const Number = styled.input`
   height: 100%;
-  width: 40%;
+  width: 100%;
   font-size: 1em;
   padding: 10px;
   -webkit-appearance: textfield;
@@ -197,4 +202,13 @@ export const StepBack = styled.button`
   @media all and (min-width: ${small}) and (max-width: ${medium}) {
     font-size: 1.1em;
   }
+`
+export const Error = styled.p`
+  display: ${props => (props.notValid === "" ? "none" : "block")};
+  padding: 10px 20px 10px;
+  border-radius: 5px;
+  background-color: #ff0043;
+  width: max-content;
+  color: #fff;
+  margin: 0 0 1vw;
 `

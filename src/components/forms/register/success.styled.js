@@ -10,7 +10,6 @@ export const RegisterSuccessWrapper = styled.main`
   -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
-  }
 `
 export const Content = styled.section`
   width: 100%;

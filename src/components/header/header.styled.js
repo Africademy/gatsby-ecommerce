@@ -12,12 +12,63 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   -webkit-align-items: center;
   background-color: #fff;
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 100;
+  transition: 0.3s ease-in-out;
+  ${props => {
+    if (props.isHeader) {
+      return `
+            position: fixed;
+            height: 8vh;
+            box-shadow:
+              0 1.7px 2.2px -10px rgba(0, 0, 0, 0.008),
+              0 4.2px 5.3px -10px rgba(0, 0, 0, 0.012),
+              0 7.9px 10px -10px rgba(0, 0, 0, 0.015),
+              0 14.1px 17.9px -10px rgba(0, 0, 0, 0.018),
+              0 26.3px 33.4px -10px rgba(0, 0, 0, 0.022),
+              0 63px 80px -10px rgba(0, 0, 0, 0.03)
+            ;
+
+        `
+    } else {
+      return `
+            box-shadow: 0;
+        `
+    }
+  }}
 `
 export const Nav = styled.nav`
   width: 50%;
+
+  a {
+    position: relative;
+    overflow: hidden;
+    font-size: 1.1em;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+
+    :before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: -40%;
+      background-color: ${colors.cta};
+      transform-origin: 50% 50%;
+      transform: scale(0);
+      transition: 0.3s ease-in-out;
+    }
+
+    :hover:before {
+      transition: 0.3s ease-in-out;
+      transform: scale(1);
+    }
+    :hover {
+      transition: 0.3s ease-in-out;
+    }
+  }
   @media all and (max-width: ${small}) {
     display: none;
   }
@@ -39,6 +90,14 @@ export const Menage = styled.section`
     color: #000;
     font-weight: 500;
     border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    ${props => {
+      if (props.isHeader) {
+        return `
+            padding: 15px 30px 15px;
+          `
+      }
+    }};
 
     @media all and (max-width: ${small}) {
       display: none;
@@ -85,6 +144,18 @@ export const CartBtn = styled.button`
   transform-origin: 0 100%;
   transition: 0.3s ease-in-out;
 
+  svg {
+    transition: 0.3s ease-in-out;
+    ${props => {
+      if (props.isHeader) {
+        return `
+            height: 4vh;
+            width: 4vh;
+          `
+      }
+    }};
+  }
+
   :focus {
     outline: none;
   }
@@ -100,12 +171,15 @@ export const Value = styled.p`
   font-size: 1em;
 `
 export const Line = styled.span`
-  width: 80%;
-  height: 3px;
-  border-radius: 10px;
-  background-color: #000000;
-  transform-origin: 0 50%;
-  transition: 0.3s ease-in-out;
+  display: none;
+  @media all and (max-width: ${small}) {
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background-color: #000000;
+    transform-origin: 0 50%;
+    transition: 0.3s ease-in-out;
+  }
 `
 export const BurgerMenuBtn = styled.button`
   display: none;
@@ -120,7 +194,7 @@ export const BurgerMenuBtn = styled.button`
     width: 6vh;
     cursor: pointer;
     border: none;
-    background: none;
+    position: relative;
 
     span:nth-child(1) {
       ${props =>
@@ -133,6 +207,9 @@ export const BurgerMenuBtn = styled.button`
         props.isMenu
           ? "transform: translateX(5px) translateY(8px) rotate(-45deg);"
           : ""}
+    }
+    :hover {
+      outline: none;
     }
   }
 `

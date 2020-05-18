@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { toggleCart, resetCart } from "../../actions"
+import { toggleCart, resetCart, removeFromCart } from "../../actions"
 import {
   CartWrapper,
   CartContainer,
@@ -25,8 +25,27 @@ const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
   const [redirect, setRedirect] = useState(false)
-  useEffect(() => {}, [cart])
+  const [quantities, setQuantities] = useState(0)
+
   // TODO update component every time when quantity changes
+
+  const calculateCart = () => {
+    const totalQuantity = cart.reduce((acc, product) => {
+      return (acc += product.quantity)
+    }, 0)
+    return setQuantities(totalQuantity)
+  }
+  const handleRemove = (e, product) => {
+    e.preventDefault()
+    calculateCart()
+    dispatch(removeFromCart(product))
+  }
+  useEffect(() => {
+    console.log("updated")
+    cart.forEach(prod => {
+      console.log(prod.quantity)
+    })
+  }, [quantities])
 
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -66,7 +85,7 @@ const Cart = ({ toggleCartProp }) => {
         successUrl: "http://localhost:8000/success",
         cancelUrl: "http://localhost:8000/canceled",
       })
-      .then(function (result) {
+      .then(result => {
         if (result.error) {
           alert(result.error)
         }
@@ -107,6 +126,7 @@ const Cart = ({ toggleCartProp }) => {
                   product={product.product}
                   quantity={product.quantity}
                   formatPrice={formatPrice}
+                  handleRemove={handleRemove}
                 />
               )
             })

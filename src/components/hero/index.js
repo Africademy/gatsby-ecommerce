@@ -1,12 +1,10 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import {
   HeroWrapper,
   HeroContent,
   Title,
   CTABtn,
   HeroImages,
-  ImageContainer,
-  Img,
   HeroBackground,
   Shape,
 } from "./hero.styled"
@@ -14,13 +12,18 @@ import shoes from "../../static/shoes.png"
 import hoodie from "../../static/hoodie.jpg"
 import shoulder from "../../static/shoulder.jpg"
 import shape from "../../static/hero-shape.svg"
+import HeroImage from "../heroImage"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { colors } from "../../theme"
 import gsap, { CSSPlugin } from "gsap"
-import { Controller, Scene } from "react-scrollmagic"
-import { Tween } from "react-gsap"
 gsap.registerPlugin(CSSPlugin)
 
 const Hero = () => {
+  const [imgs, setImgs] = useState([
+    { key: 1, img: shoes },
+    { key: 2, img: hoodie },
+    { key: 3, img: shoulder },
+  ])
   useEffect(() => {
     const tl = gsap.timeline({ duration: 1.5 })
     tl.from("#title", {
@@ -36,7 +39,13 @@ const Hero = () => {
     <HeroWrapper>
       <HeroContent>
         <Title id="title">Biggest streetwear store in your country</Title>
-        <AniLink id="cta" to="/products">
+        <AniLink
+          paintDrip
+          duration={1}
+          hex={colors.cta}
+          id="cta"
+          to="/products"
+        >
           <CTABtn>
             Explore
             <svg
@@ -57,42 +66,9 @@ const Hero = () => {
         </AniLink>
       </HeroContent>
       <HeroImages>
-        <Controller>
-          <Scene
-            duration={300}
-            indicators={true}
-            triggerElement="#cta"
-            triggerHook="onCenter"
-          >
-            <Tween></Tween>
-          </Scene>
-        </Controller>
-        <Controller>
-          <Scene
-            duration={600}
-            indicators={true}
-            triggerElement="#cta"
-            triggerHook="onCenter"
-          >
-            <Tween>
-              <ImageContainer>
-                <Img src={shoes} />
-              </ImageContainer>
-            </Tween>
-          </Scene>
-        </Controller>
-        <Controller>
-          <Scene
-            duration={600}
-            indicators={true}
-            triggerElement="#cta"
-            triggerHook="onCenter"
-          >
-            <Tween>
-              <Img src={shoulder} />
-            </Tween>
-          </Scene>
-        </Controller>
+        <HeroImage bg={colors.cta} img={shoes} duration={300} />
+        <HeroImage img={hoodie} duration={400} />
+        <HeroImage img={shoulder} duration={500} />
       </HeroImages>
       <HeroBackground>
         <Shape src={shape} alt="abstract-shape" />

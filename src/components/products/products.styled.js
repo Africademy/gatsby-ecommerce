@@ -21,9 +21,8 @@ export const List = styled.section`
   grid-row-gap: 2vw;
 
   @media all and (max-width: ${small}) {
-    display: flex;
-    flex-flow: column;
-    -webkit-flex-flow: column;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5vw;
   }
   @media all and (min-width: ${small}) and (max-width: ${large}) {
     grid-template-columns: repeat(2, 1fr);

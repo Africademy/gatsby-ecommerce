@@ -3,12 +3,14 @@ import { small, medium, large, xlarge } from "../../../breakpoints"
 
 export const LeftSideWrapper = styled.section`
   width: 50%;
-  height: 100%;
+  height: 90%;
   display: flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;
   padding: 5vw;
+  margin: 10vh 0 0;
   align-items: center;
+  justify-self: flex-end;
 
   div:nth-child(1) {
     height: 50%;

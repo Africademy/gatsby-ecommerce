@@ -10,17 +10,8 @@ import {
   Value,
   RemoveBtn,
 } from "./cartProduct.styled"
-import { removeFromCart } from "../../actions"
-import { useDispatch } from "react-redux"
 
-const CartProduct = ({ product, formatPrice, quantity }) => {
-  const dispatch = useDispatch()
-
-  const handleRemove = (e, product) => {
-    e.preventDefault()
-    dispatch(removeFromCart(product))
-  }
-
+const CartProduct = ({ product, formatPrice, quantity, handleRemove }) => {
   return (
     <CartProductWrapper key={product.id}>
       <ProductImage>

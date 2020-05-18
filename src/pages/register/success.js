@@ -5,7 +5,9 @@ import {
   Message,
 } from "../../components/forms/register/success.styled"
 import { HeaderlessLayout } from "../../components/forms/login/login.styled"
-import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { colors } from "../../theme"
+import Logo from "../../components/logo"
 
 class RegisterSuccess extends Component {
   render() {
@@ -13,8 +15,11 @@ class RegisterSuccess extends Component {
       <RegisterSuccessWrapper>
         <Content>
           <HeaderlessLayout />
+          <Logo size={"6vh"} />
           <Message>You have successfully registered in shop</Message>
-          <Link to="/login">Log in</Link>
+          <AniLink paintDrip duration={1} hex={colors.cta} to="/login">
+            Log in
+          </AniLink>
         </Content>
       </RegisterSuccessWrapper>
     )

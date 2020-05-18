@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import {
   CustomCheckbox,
   Input,
@@ -8,6 +8,9 @@ import {
   TogglePassword,
   ToggleVisibility,
 } from "../login/login.styled"
+import checked from "../../../static/check.svg"
+import gsap, { CSSPlugin } from "gsap"
+gsap.registerPlugin(CSSPlugin)
 
 const Basics = ({
   firstName,
@@ -19,8 +22,17 @@ const Basics = ({
   handleInput,
   inputType,
 }) => {
+  const form = useRef()
+
+  useEffect(() => {
+    gsap.from(form.current, {
+      translateX: "10vw",
+      opacity: 0,
+      delay: 0.2,
+    })
+  }, [])
   return (
-    <>
+    <section ref={form}>
       <Name>
         <InputContainer>
           <Label htmlFor="firstName">First Name</Label>
@@ -68,10 +80,10 @@ const Basics = ({
           type="checkbox"
           checked={togglePass}
         />
-        <CustomCheckbox />
+        <CustomCheckbox togglePass={togglePass} icon={checked} />
         <Label>Show password</Label>
       </TogglePassword>
-    </>
+    </section>
   )
 }
 

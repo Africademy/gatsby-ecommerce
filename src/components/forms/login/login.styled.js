@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components"
 import { small, medium, large, xlarge } from "../../../breakpoints"
 import { colors } from "../../../theme"
+import check from "../../../static/check.svg"
 
 export const HeaderlessLayout = createGlobalStyle`
   *, :before, :after {
@@ -20,6 +21,7 @@ export const FormWrapper = styled.main`
   display: flex;
   margin: 0;
   padding: 0;
+  position: relative;
 
   @media all and (max-width: ${medium}) {
     flex-flow: column;
@@ -27,7 +29,15 @@ export const FormWrapper = styled.main`
     overflow: hidden;
   }
 `
-
+export const Header = styled.div`
+  width: 100vw;
+  height: 10vh;
+  position: absolute;
+  padding: 0 5vw 0;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+`
 export const RightSide = styled.section`
   width: 50%;
   height: 100%;
@@ -135,7 +145,6 @@ export const TogglePassword = styled.div`
 export const CustomCheckbox = styled.span`
   height: 25px;
   width: 25px;
-  background: transparent;
   border: 2px solid #000;
   border-radius: 8px;
   position: absolute;
@@ -145,7 +154,19 @@ export const CustomCheckbox = styled.span`
   z-index: -1;
   transition: 0.3s ease-in-out;
 
-  :before {
+  ${props => {
+    if (props.togglePass) {
+      return `background-image: url(${check});
+      -moz-background-image: url(${check});
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;`
+    } else {
+      return `
+            background-color: transparent;
+        `
+    }
+  }} :before {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -161,11 +182,6 @@ export const ToggleVisibility = styled.input`
   height: 25px;
   position: relative;
   cursor: pointer;
-
-  :checked ~ span {
-    background-color: ${colors.cta};
-    border: 1px solid ${colors.cta};
-  }
 
   @media all and (max-width: ${medium}) {
     height: 30px;
@@ -235,7 +251,9 @@ export const ReturnBtn = styled.button`
   background: none;
   font-size: 1em;
   cursor: pointer;
-  display: ${props => (props.validate ? "none" : "block")};
+  display: ${props => (props.validate ? "none" : "flex")};
+  align-items: center;
+  -webkit-align-items: center;
 
   :focus {
     outline: none;
