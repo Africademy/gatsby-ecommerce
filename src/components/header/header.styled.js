@@ -98,6 +98,10 @@ export const Menage = styled.section`
           `
       }
     }};
+    :hover {
+      background-color: #ff9320;
+      transition: 0.3s ease-in-out;
+    }
 
     @media all and (max-width: ${small}) {
       display: none;
@@ -145,7 +149,6 @@ export const CartBtn = styled.button`
   transition: 0.3s ease-in-out;
 
   svg {
-    transition: 0.3s ease-in-out;
     ${props => {
       if (props.isHeader) {
         return `

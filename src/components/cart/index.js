@@ -27,8 +27,6 @@ const Cart = ({ toggleCartProp }) => {
   const [redirect, setRedirect] = useState(false)
   const [quantities, setQuantities] = useState(0)
 
-  // TODO update component every time when quantity changes
-
   const calculateCart = () => {
     const totalQuantity = cart.reduce((acc, product) => {
       return (acc += product.quantity)
@@ -40,12 +38,7 @@ const Cart = ({ toggleCartProp }) => {
     calculateCart()
     dispatch(removeFromCart(product))
   }
-  useEffect(() => {
-    console.log("updated")
-    cart.forEach(prod => {
-      console.log(prod.quantity)
-    })
-  }, [quantities])
+  useEffect(() => {}, [quantities])
 
   const formatPrice = price => {
     return `$${price * 0.01}`

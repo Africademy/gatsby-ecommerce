@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import {
   HeroWrapper,
   HeroContent,
@@ -19,11 +19,6 @@ import gsap, { CSSPlugin } from "gsap"
 gsap.registerPlugin(CSSPlugin)
 
 const Hero = () => {
-  const [imgs, setImgs] = useState([
-    { key: 1, img: shoes },
-    { key: 2, img: hoodie },
-    { key: 3, img: shoulder },
-  ])
   useEffect(() => {
     const tl = gsap.timeline({ duration: 1.5 })
     tl.from("#title", {
@@ -46,7 +41,7 @@ const Hero = () => {
           id="cta"
           to="/products"
         >
-          <CTABtn>
+          <CTABtn id="cta">
             Explore
             <svg
               height={30}

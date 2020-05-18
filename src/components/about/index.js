@@ -1,13 +1,13 @@
 import React from "react"
-import { AboutWrapper, Content, Title, Description } from "./about.styled"
+import { AboutWrapper } from "./about.styled"
+import AboutSVG from "../aboutVisual"
+import AboutContent from "../aboutContent"
 
 const About = () => {
   return (
     <AboutWrapper>
-      <Content>
-        <Title>How our store works?</Title>
-        <Description>Lorem ipsum</Description>
-      </Content>
+      <AboutContent />
+      <AboutSVG />
     </AboutWrapper>
   )
 }
