@@ -11,7 +11,7 @@ import {
 import { addToCart } from "../../actions"
 import { handleModal } from "../../actions"
 import { Link } from "gatsby"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const Product = ({ product }) => {
   const formatPrice = price => {

@@ -227,6 +227,10 @@ export const CheckoutBtn = styled.button`
   -webkit-align-items: center;
   transition: 0.3s ease-in-out;
 
+  :focus {
+    outline: none;
+  }
+
   @media all and (max-width: ${small}) {
     font-size: 1.2em;
   }

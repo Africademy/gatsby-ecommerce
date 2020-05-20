@@ -69,9 +69,7 @@ const Cart = ({ toggleCartProp }) => {
     const sku = cart.map(product => {
       return { sku: product.product.id, quantity: product.quantity }
     })
-    const stripe = await loadStripe(
-      "pk_test_12OvtkoNyXZih5pqyn0EYvn100iLl3Oay0"
-    )
+    const stripe = await loadStripe(process.env.GATSBY_STRIPE_PK)
     stripe
       .redirectToCheckout({
         items: sku,

@@ -37,14 +37,8 @@ module.exports = {
       resolve: `gatsby-source-stripe`,
       options: {
         objects: ["Sku"],
-        secretKey: "sk_test_hIsb4mjmvPUOdiELJjTJRkWC00CDOSWdN2",
+        secretKey: process.env.GATSBY_STRIPE_SECRET_KEY,
         downloadFiles: true,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-apollo",
-      options: {
-        uri: "https://api.stripe.com/",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
