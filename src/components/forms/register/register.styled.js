@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../../theme"
-import { small, medium, large, xlarge } from "../../../breakpoints"
+import { small, medium, xlarge } from "../../../breakpoints"
 
 export const RegisterFormWrapper = styled.section`
   width: 50%;

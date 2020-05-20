@@ -33,7 +33,7 @@ const Template = ({
     dispatch(handleModal())
     dispatch(addToCart(product))
   }
-  return (
+  return product !== undefined ? (
     <Layout>
       <TemplateWrapper>
         <Modal />
@@ -74,6 +74,8 @@ const Template = ({
         </TemplateContainer>
       </TemplateWrapper>
     </Layout>
+  ) : (
+    <div></div>
   )
 }
 

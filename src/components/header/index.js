@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import {
   HeaderWrapper,
   Nav,
@@ -40,17 +40,7 @@ const Header = () => {
       })
     }
   }, [])
-  const formatPrice = price => {
-    return `$${price * 0.01}`
-  }
-  const totalPrice = () => {
-    if (cart.length > 0) {
-      const total = cart.reduce((acc, product) => {
-        return (acc += product.product.price * product.quantity)
-      }, 0)
-      return total
-    }
-  }
+
   const calculateCart = () => {
     const totalQuantity = cart.reduce((acc, product) => {
       return (acc += product.quantity)

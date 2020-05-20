@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { small, medium, large, xlarge } from "../../breakpoints"
+import { small, xlarge } from "../../breakpoints"
 
 export const RemoveBtn = styled.button`
   padding: 15px 30px 15px;
@@ -14,6 +14,9 @@ export const RemoveBtn = styled.button`
 
   :focus {
     outline: none;
+  }
+  @media all and (max-width: ${small}) {
+    visibility: visible;
   }
 `
 export const CartProductWrapper = styled.div`

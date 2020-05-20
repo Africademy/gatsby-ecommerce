@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors } from "../../theme"
-import { small, medium } from "../../breakpoints"
+import { medium } from "../../breakpoints"
 
 export const SkipWrapper = styled.section`
   width: 70%;

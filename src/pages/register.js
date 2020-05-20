@@ -11,7 +11,6 @@ import {
   Btns,
   NextFields,
   StepBack,
-  NotValid,
   Error,
 } from "../components/forms/register/register.styled"
 import LeftSide from "../components/forms/leftSide"

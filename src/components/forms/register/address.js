@@ -8,6 +8,7 @@ import {
   PostalCodeContainer,
 } from "./register.styled"
 import gsap, { CSSPlugin } from "gsap"
+gsap.registerPlugin(CSSPlugin)
 
 const Address = ({
   street,
@@ -16,7 +17,6 @@ const Address = ({
   country,
   handleInput,
   handlePostalCode,
-  validateAddress,
 }) => {
   const form = useRef()
   useEffect(() => {

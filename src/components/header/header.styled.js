@@ -174,15 +174,12 @@ export const Value = styled.p`
   font-size: 1em;
 `
 export const Line = styled.span`
-  display: none;
-  @media all and (max-width: ${small}) {
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background-color: #000000;
-    transform-origin: 0 50%;
-    transition: 0.3s ease-in-out;
-  }
+  width: 4vh;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #000000;
+  transform-origin: 0 50%;
+  transition: 0.3s ease-in-out;
 `
 export const BurgerMenuBtn = styled.button`
   display: none;
@@ -193,26 +190,31 @@ export const BurgerMenuBtn = styled.button`
     justify-content: space-evenly;
     align-items: center;
     -webkit-align-items: center;
+    background: none;
     height: 4vh;
     width: 6vh;
     cursor: pointer;
     border: none;
     position: relative;
+  }
 
-    span:nth-child(1) {
-      ${props =>
-        props.isMenu
-          ? "transform: translateX(5px) translateY(-8px) rotate(45deg);"
-          : ""}
-    }
-    span:nth-child(2) {
-      ${props =>
-        props.isMenu
-          ? "transform: translateX(5px) translateY(8px) rotate(-45deg);"
-          : ""}
-    }
-    :hover {
-      outline: none;
-    }
+  :focus {
+    outline: none;
+  }
+
+  span:nth-child(1) {
+    ${props =>
+      props.isMenu
+        ? "transform: translateX(5px) translateY(-6px) rotate(45deg);"
+        : ""}
+  }
+  span:nth-child(2) {
+    ${props =>
+      props.isMenu
+        ? "transform: translateX(5px) translateY(6px) rotate(-45deg);"
+        : ""}
+  }
+  :hover {
+    outline: none;
   }
 `
