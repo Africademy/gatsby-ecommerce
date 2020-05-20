@@ -19,6 +19,14 @@ export const LogoWrapper = styled.div`
   -webkit-align-items: center;
   transition: 0.3s ease-in-out;
   ${props => {
+    if (props.isMenu) {
+      return `
+        transform: translateX(-20vw);
+      `
+    }
+  }}
+
+  ${props => {
     if (props.isHeader) {
       return `
             height: 4vh;

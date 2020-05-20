@@ -66,7 +66,7 @@ const Header = () => {
         duration={0.7}
         to="/"
       >
-        <Logo isHeader={isHeader} size={"6vh"} />
+        <Logo isMenu={isMenu} isHeader={isHeader} size={"6vh"} />
       </AniLink>
       <Nav>
         <AniLink

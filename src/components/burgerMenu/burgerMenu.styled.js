@@ -38,6 +38,14 @@ export const Menu = styled.nav`
     display: block;
     padding: 0;
     background: none;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+    :hover {
+      transform: translateX(5vw);
+      transition: 0.3s ease-in-out;
+      background: none;
+    }
   }
   a:nth-child(3) {
     position: absolute;
@@ -62,4 +70,8 @@ export const NavBtn = styled.button`
   background: none;
   line-height: 2em;
   font-size: 2.2em;
+
+  :focus {
+    outline: none;
+  }
 `
