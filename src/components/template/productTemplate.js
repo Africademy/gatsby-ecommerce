@@ -20,11 +20,7 @@ import { useDispatch } from "react-redux"
 import { addToCart } from "../../actions"
 import { handleModal } from "../../actions"
 
-const Template = ({
-  location: {
-    state: { product },
-  },
-}) => {
+const Template = ({ location }) => {
   const dispatch = useDispatch()
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -33,7 +29,10 @@ const Template = ({
     dispatch(handleModal())
     dispatch(addToCart(product))
   }
-  return product !== undefined ? (
+  const {
+    state: { product },
+  } = location
+  return (
     <Layout>
       <TemplateWrapper>
         <Modal />
@@ -74,8 +73,6 @@ const Template = ({
         </TemplateContainer>
       </TemplateWrapper>
     </Layout>
-  ) : (
-    <div></div>
   )
 }
 
