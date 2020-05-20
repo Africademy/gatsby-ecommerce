@@ -29,16 +29,16 @@ const Template = ({ location }) => {
     dispatch(handleModal())
     dispatch(addToCart(product))
   }
-  const {
-    state: { product },
-  } = location
   return (
     <Layout>
       <TemplateWrapper>
         <Modal />
         <TemplateContainer>
           <ImageContainer>
-            <Img src={product.image} alt={product.attributes.name} />
+            <Img
+              src={location.state.product.image}
+              alt={location.state.product.attributes.name}
+            />
           </ImageContainer>
           <DetailsContainer>
             <Link to="/products">
@@ -58,15 +58,15 @@ const Template = ({ location }) => {
               </svg>
               Products
             </Link>
-            <Name>{product.attributes.name}</Name>
-            <Price>{formatPrice(product.price)}</Price>
+            <Name>{location.state.product.attributes.name}</Name>
+            <Price>{formatPrice(location.state.product.price)}</Price>
             <Description>
               <Header>
                 <Title>Description</Title>
               </Header>
               <Content>Lorem ipsum dolor et. Cotton 100%</Content>
             </Description>
-            <AddToCartBtn onClick={() => handleAddItem(product)}>
+            <AddToCartBtn onClick={() => handleAddItem(location.state.product)}>
               Add to cart
             </AddToCartBtn>
           </DetailsContainer>
