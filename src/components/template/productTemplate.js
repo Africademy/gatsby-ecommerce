@@ -29,7 +29,7 @@ const Template = ({ location }) => {
     dispatch(handleModal())
     dispatch(addToCart(product))
   }
-  if (!location) return null
+  if (location.state.product === undefined) return null
   return (
     <Layout>
       <TemplateWrapper>
