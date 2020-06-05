@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../layout"
 import {
   TemplateWrapper,
@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux"
 import { addToCart } from "../../actions"
 import { handleModal } from "../../actions"
 
-const Template = ({ location }) => {
+const Template = props => {
   const dispatch = useDispatch()
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -29,11 +29,20 @@ const Template = ({ location }) => {
     dispatch(handleModal())
     dispatch(addToCart(product))
   }
-  return location === undefined ? null : (
-    <Layout>
-      <TemplateWrapper>
+  console.log(props)
+
+  return <Layout></Layout>
+}
+
+export default Template
+
+/*
+<TemplateWrapper>
         <Modal />
         <TemplateContainer>
+          <ImageContainer>
+            <Img src={product.image} alt={product.attributes.name} />
+          </ImageContainer>
           <DetailsContainer>
             <Link to="/products">
               <svg
@@ -52,31 +61,18 @@ const Template = ({ location }) => {
               </svg>
               Products
             </Link>
-            <Name>{location.state.product.attributes.name}</Name>
-            <Price>{formatPrice(location.state.product.price)}</Price>
+            <Name>{product.attributes.name}</Name>
+            <Price>{formatPrice(product.price)}</Price>
             <Description>
               <Header>
                 <Title>Description</Title>
               </Header>
-              <Content>Lorem ipsum dolor et. Cotton 100%</Content>
+              <Content>Cotton 100%</Content>
             </Description>
-            <AddToCartBtn onClick={() => handleAddItem(location.state.product)}>
+            <AddToCartBtn onClick={() => handleAddItem(product)}>
               Add to cart
             </AddToCartBtn>
           </DetailsContainer>
         </TemplateContainer>
       </TemplateWrapper>
-    </Layout>
-  )
-}
-
-export default Template
-
-/*
-<ImageContainer>
-            <Img
-              src={location.state.product.image}
-              alt={location.state.product.attributes.name}
-            />
-          </ImageContainer>
  */

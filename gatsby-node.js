@@ -30,8 +30,6 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/products/${node.id}`,
       component: path.resolve(`./src/components/template/productTemplate.js`),
       context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
         product: node,
       },
     })
