@@ -34,12 +34,6 @@ const Template = ({ location }) => {
       <TemplateWrapper>
         <Modal />
         <TemplateContainer>
-          <ImageContainer>
-            <Img
-              src={location.state.product.image}
-              alt={location.state.product.attributes.name}
-            />
-          </ImageContainer>
           <DetailsContainer>
             <Link to="/products">
               <svg
@@ -77,3 +71,12 @@ const Template = ({ location }) => {
 }
 
 export default Template
+
+/*
+<ImageContainer>
+            <Img
+              src={location.state.product.image}
+              alt={location.state.product.attributes.name}
+            />
+          </ImageContainer>
+ */
