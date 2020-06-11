@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Layout from "../layout"
 import {
   TemplateWrapper,
@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux"
 import { addToCart } from "../../actions"
 import { handleModal } from "../../actions"
 
-const Template = props => {
+const Template = ({ location }) => {
   const dispatch = useDispatch()
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -29,15 +29,12 @@ const Template = props => {
     dispatch(handleModal())
     dispatch(addToCart(product))
   }
-  console.log(props)
+  const { state } = location
+  const { product } = state
 
-  return <Layout></Layout>
-}
-
-export default Template
-
-/*
-<TemplateWrapper>
+  return location === undefined || null ? null : (
+    <Layout>
+      <TemplateWrapper>
         <Modal />
         <TemplateContainer>
           <ImageContainer>
@@ -75,4 +72,8 @@ export default Template
           </DetailsContainer>
         </TemplateContainer>
       </TemplateWrapper>
- */
+    </Layout>
+  )
+}
+
+export default Template
