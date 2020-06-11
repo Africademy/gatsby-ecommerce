@@ -2,11 +2,19 @@ const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  const productTemplate = path.resolve(
+    `./src/components/template/productTemplate.js`
+  )
   const result = await graphql(`
     query {
       allStripeSku {
         nodes {
           id
+          image
+          price
+          attributes {
+            name
+          }
         }
       }
     }
@@ -15,7 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allStripeSku.nodes.forEach(node => {
     createPage({
       path: `/products/${node.id}`,
-      component: path.resolve(`./src/components/template/productTemplate.js`),
+      component: productTemplate,
       context: {
         product: node,
       },
