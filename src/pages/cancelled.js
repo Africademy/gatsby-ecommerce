@@ -7,7 +7,7 @@ import {
 import { HeaderlessLayout } from "../components/forms/login/login.styled"
 import { Link } from "gatsby"
 
-const Canceled = () => {
+const Cancelled = () => {
   return (
     <CanceledWrapper>
       <HeaderlessLayout />
@@ -20,4 +20,4 @@ const Canceled = () => {
   )
 }
 
-export default Canceled
+export default Cancelled
