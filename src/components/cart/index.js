@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleCart, resetCart, removeFromCart } from "../../actions"
 import {
@@ -16,7 +16,6 @@ import {
 import CartProduct from "../cartProduct"
 import EmptyCart from "../emptyCart"
 import Trash from "../trashIcon"
-import { store } from "../../state/ReduxWrapper"
 import { loadStripe } from "@stripe/stripe-js"
 import Loading from "../loading"
 import { colors } from "../../theme"
@@ -25,7 +24,7 @@ const Cart = ({ toggleCartProp }) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
   const [redirect, setRedirect] = useState(false)
-  const [quantities, setQuantities] = useState(0)
+  const [setQuantities] = useState(0)
 
   const calculateCart = () => {
     const totalQuantity = cart.reduce((acc, product) => {
@@ -38,7 +37,6 @@ const Cart = ({ toggleCartProp }) => {
     calculateCart()
     dispatch(removeFromCart(product))
   }
-  useEffect(() => {}, [quantities])
 
   const formatPrice = price => {
     return `$${price * 0.01}`
@@ -51,8 +49,6 @@ const Cart = ({ toggleCartProp }) => {
       return total
     }
   }
-
-  store.subscribe(() => totalPrice())
 
   const handleClose = e => {
     e.preventDefault()
@@ -70,17 +66,19 @@ const Cart = ({ toggleCartProp }) => {
       return { sku: product.product.id, quantity: product.quantity }
     })
     const stripe = await loadStripe(process.env.GATSBY_STRIPE_PK)
-    stripe
-      .redirectToCheckout({
-        items: sku,
-        successUrl: "http://localhost:8000/success",
-        cancelUrl: "http://localhost:8000/canceled",
-      })
-      .then(result => {
-        if (result.error) {
-          alert(result.error)
-        }
-      })
+    if (window) {
+      stripe
+        .redirectToCheckout({
+          items: sku,
+          successUrl: `https://${window.location.hostname}//success`,
+          cancelUrl: `https://${window.location.hostname}//canceled`,
+        })
+        .then(result => {
+          if (result.error) {
+            alert(result.error)
+          }
+        })
+    }
   }
   return (
     <CartWrapper toggleCart={toggleCartProp}>
